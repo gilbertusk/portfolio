@@ -7,7 +7,8 @@ describe('App', () => {
   it('swaps the lazy stack placeholder for the real section', async () => {
     render(<App />)
 
-    expect(await screen.findByRole('heading', { name: 'AI & automation' })).toBeInTheDocument()
+    // The lazy chunk can take over a second under a parallel, cold test run.
+    expect(await screen.findByRole('heading', { name: 'AI & automation' }, { timeout: 5000 })).toBeInTheDocument()
     expect(document.querySelectorAll('#stack')).toHaveLength(1)
   })
 

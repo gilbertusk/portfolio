@@ -215,8 +215,8 @@
 
   /* The mat frames each visual like a mounted print: hatch texture around a hard-edged frame. */
   .project-visual-mat {
-    background-color: var(--tint);
-    background-image: repeating-linear-gradient(135deg, #dcdcd6 0 1px, transparent 1px 7px);
+    background-color: var(--surface-2);
+    background-image: repeating-linear-gradient(135deg, #cfcfc8 0 1px, transparent 1px 7px);
   }
 
   .project-visual-frame {

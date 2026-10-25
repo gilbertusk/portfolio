@@ -1,4 +1,6 @@
-import pilahImage from '../assets/projects/pilah-samples.webp'
+import absensiImage from '../assets/projects/back-end-absensi.webp'
+import kpiImage from '../assets/projects/kpi-job-desk.webp'
+import pilahImage from '../assets/projects/pilah-demo.webp'
 import pneumoniaImage from '../assets/projects/pneumonia.webp'
 import repCounterImage from '../assets/projects/rep-counter.webp'
 import travelJaegerImage from '../assets/projects/travel-jaeger.webp'
@@ -55,9 +57,9 @@ export const featuredProjects: Project[] = [
     ],
     image: {
       src: pilahImage,
-      alt: 'Grid of sample training images across ten waste classes: batteries, food, cartons, clothes, glass, metal, paper, plastic, shoes, and trash',
-      width: 1024,
-      height: 1280,
+      alt: 'Pilah web app home screen asking which bin a piece of trash belongs in, with buttons to turn on the camera or pick a photo',
+      width: 1200,
+      height: 750,
     },
     flow: {
       input: 'Photo',
@@ -170,6 +172,12 @@ export const engineeringProjects: Project[] = [
     summary:
       'Managers assign weighted tasks, staff report completion with proof, and late work is scored by rules each manager sets. Includes Excel import and audit history.',
     stack: ['Next.js', 'Prisma', 'Supabase', 'Auth.js', 'Playwright'],
+    image: {
+      src: kpiImage,
+      alt: 'KPI Job Desk System sign-in page for PT Berlian Artha Label, with email and password fields',
+      width: 1200,
+      height: 750,
+    },
     links: [{ kind: 'site', href: 'https://keyperformanceindicator.vercel.app' }],
   },
   {
@@ -191,6 +199,12 @@ export const engineeringProjects: Project[] = [
     category: 'REST API',
     summary: 'Attendance API with JWT auth, user management, and photo uploads to Cloudinary.',
     stack: ['Node.js', 'Express', 'MongoDB', 'JWT', 'Cloudinary'],
+    image: {
+      src: absensiImage,
+      alt: 'Swagger documentation for the attendance API, listing auth and user endpoints such as register, login, and profile updates',
+      width: 1200,
+      height: 750,
+    },
     links: [
       { kind: 'docs', href: 'https://back-end-absensi.vercel.app/api-docs/' },
       { kind: 'source', href: 'https://github.com/GilbertusKristo/back-end-absensi' },

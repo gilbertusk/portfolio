@@ -1,11 +1,9 @@
 import { ArrowUpRightIcon, BookOpenIcon, GithubLogoIcon, LockSimpleIcon } from '@phosphor-icons/react'
 import type { Project, ProjectFlow, ProjectLink } from '../../data/types'
-import { cn } from '../../lib/cn'
 import { LINK_META } from '../ui/linkMeta'
 import { ProjectFlowImage } from './ProjectFlowImage'
 
 const VISIBLE_STACK_COUNT = 3
-const VISIBLE_METRIC_COUNT = 2
 
 function isLiveLink({ kind }: ProjectLink) {
   return kind === 'demo' || kind === 'site'
@@ -23,9 +21,45 @@ function getStatusLabel(project: Project) {
   return project.isPrivate ? 'Private' : undefined
 }
 
+/** What the preview's address bar shows: the live host, else the repo or docs path. */
+function getPreviewAddress(project: Project) {
+  const link = project.links.find(isLiveLink) ?? project.links[0]
+  if (!link) return `~/${project.id}`
+
+  const { host, pathname } = new URL(link.href)
+  return `${host}${pathname}`.replace(/\/$/, '')
+}
+
+function BrowserBar({ address }: { address: string }) {
+  return (
+    <div aria-hidden className="flex h-6 flex-none items-center gap-2 border-b border-ink bg-surface px-2">
+      <span className="flex gap-1">
+        <span className="size-1.5 rounded-full bg-ink" />
+        <span className="size-1.5 rounded-full border border-ink" />
+        <span className="size-1.5 rounded-full border border-ink" />
+      </span>
+      <span className="min-w-0 flex-1 truncate bg-surface-2 px-2 py-0.5 font-mono text-[0.55rem] leading-none text-subtle">
+        {address}
+      </span>
+    </div>
+  )
+}
+
+function MetricBadge({ project }: { project: Project }) {
+  const metric = project.metrics?.[0]
+  if (!metric) return null
+
+  return (
+    <p className="absolute bottom-5 left-5 z-10 flex max-w-[70%] items-baseline gap-2 bg-ink px-2.5 py-1.5 text-surface shadow-[2px_2px_0_var(--surface)]">
+      <span className="text-lg leading-none font-medium tracking-[-0.04em]">{metric.value}</span>
+      <span className="truncate font-mono text-[0.55rem] leading-none text-surface/70 uppercase">{metric.label}</span>
+    </p>
+  )
+}
+
 function StatusChip({ label }: { label: string }) {
   return (
-    <span className="absolute top-5 right-5 z-10 inline-flex items-center gap-1.5 border border-ink bg-surface px-2 py-1 font-mono text-[0.6rem] leading-none tracking-wide text-ink uppercase shadow-[2px_2px_0_var(--ink)]">
+    <span className="absolute top-10 right-5 z-10 inline-flex items-center gap-1.5 border border-ink bg-surface px-2 py-1 font-mono text-[0.6rem] leading-none tracking-wide text-ink uppercase shadow-[2px_2px_0_var(--ink)]">
       {label === 'Live' && <span aria-hidden className="project-live-dot" />}
       {label === 'Private' && <LockSimpleIcon aria-hidden size={10} />}
       {label}
@@ -86,12 +120,16 @@ function ProjectVisual({ project }: { project: Project }) {
     media = <TerminalVisual project={project} />
   }
 
+  const hasTerminal = !project.image && !project.flow
+
   return (
-    <div className="project-visual-mat relative aspect-[16/11] border-b border-line">
-      <div className="project-visual-frame absolute inset-3 overflow-hidden border border-ink bg-surface-2">
-        {media}
+    <div className="project-visual-mat relative aspect-[4/3] border-b border-line">
+      <div className="project-visual-frame absolute inset-3 flex flex-col overflow-hidden border border-ink bg-surface-2">
+        {!hasTerminal && <BrowserBar address={getPreviewAddress(project)} />}
+        <div className="min-h-0 flex-1">{media}</div>
       </div>
       {statusLabel && <StatusChip label={statusLabel} />}
+      <MetricBadge project={project} />
     </div>
   )
 }
@@ -110,22 +148,6 @@ function PipelineLine({ flow }: { flow: ProjectFlow }) {
         </span>
       ))}
     </p>
-  )
-}
-
-function MetricStrip({ project }: { project: Project }) {
-  const metrics = project.metrics?.slice(0, VISIBLE_METRIC_COUNT) ?? []
-  if (metrics.length === 0) return null
-
-  return (
-    <dl className="mt-4 grid grid-cols-2 divide-x divide-line border-y border-line">
-      {metrics.map(({ value, label }) => (
-        <div key={label} className="flex flex-col-reverse gap-1 py-2.5 pr-3 not-first:pl-3">
-          <dt className="text-[0.65rem] leading-snug text-subtle">{label}</dt>
-          <dd className="text-xl leading-none font-medium tracking-[-0.04em]">{value}</dd>
-        </div>
-      ))}
-    </dl>
   )
 }
 
@@ -220,10 +242,9 @@ export function ProjectCard({ project, number }: { project: Project; number: num
           {project.category} <span aria-hidden>·</span> {project.year}
         </p>
         <h3 className="mt-2 pr-14 text-[1.4rem] leading-tight font-medium tracking-[-0.045em]">{project.title}</h3>
-        <p className={cn('mt-2 text-sm leading-relaxed text-muted', project.metrics ? 'line-clamp-3' : 'line-clamp-4')}>
+        <p className="mt-2 line-clamp-3 min-h-[4.25rem] text-sm leading-relaxed text-muted">
           {project.teaser ?? project.summary}
         </p>
-        <MetricStrip project={project} />
         {project.image && project.flow && <PipelineLine flow={project.flow} />}
         <StackLine project={project} />
         <ProjectFooter project={project} />
