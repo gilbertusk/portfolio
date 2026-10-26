@@ -93,7 +93,8 @@ export const moreAiProjects: Project[] = [
     title: 'Pneumonia Detection',
     year: '2026',
     category: 'Medical imaging',
-    summary: 'Chest X-ray classifier served through a Flask API, with a Next.js upload interface.',
+    summary:
+      'Educational chest X-ray classification demo served through a Flask API, with a Next.js upload interface. It is not intended for clinical diagnosis.',
     stack: ['TensorFlow', 'Flask', 'Next.js'],
     image: {
       src: pneumoniaImage,

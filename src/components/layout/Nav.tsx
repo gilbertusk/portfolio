@@ -1,6 +1,7 @@
 import { ArrowUpRightIcon, ListIcon, XIcon } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
 import { navItems, profile } from '../../data/profile'
+import { ThemeToggle } from '../ui/ThemeToggle'
 const LINK_CLASS =
   'px-2 py-2 text-sm text-muted underline-offset-4 transition-colors hover:text-ink hover:underline'
 
@@ -32,7 +33,7 @@ export function Nav() {
             <span>{profile.name}</span>
           </a>
 
-          <div className="flex items-center gap-3 md:gap-6">
+          <div className="flex items-center gap-2 md:gap-5">
             <ul className="hidden items-center gap-4 md:flex">
               {navItems.map(({ label, href }) => (
                 <li key={href}>
@@ -45,6 +46,7 @@ export function Nav() {
             <a href="#contact" className="hidden items-center gap-1 border-b border-ink pb-1 text-sm font-medium md:inline-flex">
               Let&apos;s talk <ArrowUpRightIcon aria-hidden size={14} />
             </a>
+            <ThemeToggle />
             <button
               ref={menuToggleRef}
               type="button"

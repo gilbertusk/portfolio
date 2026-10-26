@@ -7,7 +7,6 @@ import { CopyEmailButton } from './CopyEmailButton'
 const SOCIAL_LINKS: Array<{ label: string; href: string; icon: Icon }> = [
   { label: 'LinkedIn', href: profile.links.linkedin, icon: LinkedinLogoIcon },
   { label: 'GitHub', href: profile.links.github, icon: GithubLogoIcon },
-  { label: 'Earlier work on GitHub', href: profile.links.githubLegacy, icon: GithubLogoIcon },
 ]
 
 export function Contact() {

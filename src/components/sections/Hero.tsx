@@ -1,5 +1,6 @@
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
 import profileImage from '../../assets/profile.webp'
+import { profile } from '../../data/profile'
 
 const PHOTO_ALT = 'Portrait of Gilbertus Kristo with arms crossed, in front of a grey concrete wall'
 
@@ -10,7 +11,7 @@ export function Hero() {
         <div className="md:col-span-7">
           <p className="flex items-center gap-3 font-mono text-[0.7rem] tracking-wide text-muted uppercase">
             <span aria-hidden className="h-px w-7 bg-ink" />
-            AI engineer / builder
+            {profile.role}
           </p>
           <h1
             id="hero-heading"
@@ -23,6 +24,10 @@ export function Hero() {
           <p className="mt-9 max-w-[27rem] border-l-2 border-ink pl-4 text-base leading-relaxed text-muted md:text-lg">
             I build computer vision, OCR, and backend tools that make everyday work easier.
           </p>
+          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs text-subtle">
+            <span>{profile.location}</span>
+            <span>{profile.availability}</span>
+          </div>
           <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
             <a
               href="#work"
@@ -55,6 +60,20 @@ export function Hero() {
           <span aria-hidden className="absolute top-4 right-0 font-mono text-[0.62rem] tracking-wide text-subtle [writing-mode:vertical-rl]">
             VISION · OCR · SYSTEMS
           </span>
+        </div>
+      </div>
+      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 border-t border-line px-5 pb-8 sm:grid-cols-3 md:px-8">
+        <div className="grid grid-cols-[auto_1fr] items-baseline gap-x-3 border-b border-line py-4 sm:border-r sm:border-b-0 sm:pr-6">
+          <span className="font-mono text-2xl font-medium tracking-tight tabular-nums md:text-3xl">22</span>
+          <span className="text-sm text-muted">exercises recognized<br /><span className="text-xs text-subtle">Rep Counter</span></span>
+        </div>
+        <div className="grid grid-cols-[auto_1fr] items-baseline gap-x-3 border-b border-line py-4 sm:border-r sm:border-b-0 sm:px-6">
+          <span className="font-mono text-2xl font-medium tracking-tight tabular-nums md:text-3xl">0.939</span>
+          <span className="text-sm text-muted">macro-F1 score<br /><span className="text-xs text-subtle">Pilah · 1,836 test images</span></span>
+        </div>
+        <div className="grid grid-cols-[auto_1fr] items-baseline gap-x-3 py-4 sm:pl-6">
+          <span className="font-mono text-2xl font-medium tracking-tight tabular-nums md:text-3xl">0</span>
+          <span className="text-sm text-muted">video frames sent to server<br /><span className="text-xs text-subtle">Rep Counter runs in browser</span></span>
         </div>
       </div>
     </section>

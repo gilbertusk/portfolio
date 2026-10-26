@@ -22,6 +22,7 @@
 }
 
 :root {
+  color-scheme: light;
   --canvas: #fafaf8;
   --surface: #ffffff;
   --surface-2: #f0f0ed;
@@ -32,6 +33,24 @@
   --accent: #171717;
   --accent-soft: rgb(23 23 23 / 0.07);
   --tint: #f5f5f2;
+  --pattern-line: #deded9;
+  --pattern-strong: #cfcfc8;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --canvas: #111210;
+  --surface: #191a17;
+  --surface-2: #22231f;
+  --ink: #eeeee8;
+  --muted: #c2c3bb;
+  --subtle: #a2a39a;
+  --line: #45463f;
+  --accent: #e9e9df;
+  --accent-soft: rgb(233 233 223 / 0.16);
+  --tint: #24251f;
+  --pattern-line: #33342e;
+  --pattern-strong: #42433b;
 }
 
 @layer base {
@@ -49,7 +68,6 @@
 
   body {
     @apply bg-canvas text-ink font-sans antialiased;
-    color-scheme: light;
   }
 
   ::selection {
@@ -78,8 +96,8 @@
     z-index: -1;
     width: 68%;
     background-image:
-      linear-gradient(to right, #deded9 1px, transparent 1px),
-      linear-gradient(to bottom, #deded9 1px, transparent 1px);
+      linear-gradient(to right, var(--pattern-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--pattern-line) 1px, transparent 1px);
     background-size: 48px 48px;
     opacity: 0.43;
     mask-image: linear-gradient(to right, #000 0%, #000 38%, transparent 100%);
@@ -94,7 +112,7 @@
     z-index: -1;
     width: 32rem;
     aspect-ratio: 1;
-    border: 1px solid #d1d1cc;
+    border: 1px solid var(--pattern-strong);
     border-radius: 50%;
     pointer-events: none;
   }
@@ -102,7 +120,7 @@
   .photo-hatch {
     background: repeating-linear-gradient(
       135deg,
-      #3f3f3e 0 1px,
+      var(--pattern-strong) 0 1px,
       transparent 1px 10px
     );
   }
@@ -134,7 +152,7 @@
     height: 60%;
     background: repeating-linear-gradient(
       135deg,
-      #898985 0 1px,
+      var(--pattern-strong) 0 1px,
       transparent 1px 12px
     );
     opacity: 0.28;
@@ -216,7 +234,7 @@
   /* The mat frames each visual like a mounted print: hatch texture around a hard-edged frame. */
   .project-visual-mat {
     background-color: var(--surface-2);
-    background-image: repeating-linear-gradient(135deg, #cfcfc8 0 1px, transparent 1px 7px);
+    background-image: repeating-linear-gradient(135deg, var(--pattern-strong) 0 1px, transparent 1px 7px);
   }
 
   .project-visual-frame {
@@ -262,8 +280,8 @@
   }
 
   .project-flow {
-    background-color: #f4f4f1;
-    background-image: radial-gradient(#c7c7bf 0.55px, transparent 0.8px);
+    background-color: var(--surface-2);
+    background-image: radial-gradient(var(--pattern-strong) 0.55px, transparent 0.8px);
     background-size: 9px 9px;
   }
 
