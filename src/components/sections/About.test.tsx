@@ -8,6 +8,13 @@ function certificationItems(): HTMLElement[] {
 }
 
 describe('About', () => {
+  it('shows a visual summary beside the bio and labels the experience timeline', () => {
+    render(<About />)
+
+    expect(screen.getByRole('figure', { name: /layered illustration of an ai build loop/i })).toBeInTheDocument()
+    expect(screen.getByRole('list', { name: 'Experience timeline' })).toBeInTheDocument()
+  })
+
   it('shows a short certification list that expands and collapses', () => {
     render(<About />)
     expect(certificationItems()).toHaveLength(VISIBLE_CERTIFICATIONS)

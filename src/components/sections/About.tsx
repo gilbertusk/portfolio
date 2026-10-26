@@ -6,7 +6,7 @@ import { Section, SectionHeading } from '../ui/Section'
 
 function CertificationItem({ cert }: { cert: Certification }) {
   return (
-    <li className="border-t border-line pt-4">
+    <li className="certification-tile flex min-h-28 flex-col justify-between border border-line bg-surface p-4 transition-colors hover:border-ink">
       {cert.href ? (
         <a
           href={cert.href}
@@ -32,6 +32,32 @@ function CertificationItem({ cert }: { cert: Certification }) {
   )
 }
 
+function AboutVisual() {
+  return (
+    <figure
+      aria-label="Layered illustration of an AI build loop: model, workflow, and product"
+      className="about-visual mt-10"
+    >
+      <figcaption className="about-visual-caption">
+        <span>How I build</span>
+        <span className="font-mono">01 / 03</span>
+      </figcaption>
+      <div className="about-visual-stage" aria-hidden="true">
+        <div className="about-orbit about-orbit-one" />
+        <div className="about-orbit about-orbit-two" />
+        <span className="about-orbit-dot about-orbit-dot-one" />
+        <span className="about-orbit-dot about-orbit-dot-two" />
+        <div className="about-cube-stack">
+          <div className="about-cube about-cube-product"><span>03</span><strong>PRODUCT</strong><small>usable by people</small></div>
+          <div className="about-cube about-cube-workflow"><span>02</span><strong>WORKFLOW</strong><small>reliable in practice</small></div>
+          <div className="about-cube about-cube-model"><span>01</span><strong>MODEL</strong><small>measured, not guessed</small></div>
+        </div>
+      </div>
+      <p className="about-visual-footnote">From a model that works to a system people can trust.</p>
+    </figure>
+  )
+}
+
 export function About() {
   const [showAllCerts, setShowAllCerts] = useState(false)
   const visibleCerts = showAllCerts ? certifications : certifications.slice(0, VISIBLE_CERTIFICATIONS)
@@ -47,15 +73,16 @@ export function About() {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
+          <AboutVisual />
         </Reveal>
 
         <div className="space-y-16 lg:col-span-7">
           <Reveal>
             <h3 className="text-lg font-medium tracking-tight">Experience and education</h3>
-            <ol className="mt-6 space-y-7">
+            <ol aria-label="Experience timeline" className="experience-timeline mt-6 space-y-5">
               {timeline.map((entry) => (
-                <li key={entry.role} className="grid gap-1 sm:grid-cols-[9.5rem_1fr] sm:gap-6">
-                  <p className="pt-0.5 font-mono text-sm text-subtle">{entry.period}</p>
+                <li key={entry.role} className="experience-entry grid gap-1 sm:grid-cols-[9.5rem_1fr] sm:gap-6">
+                  <p className="experience-period pt-0.5 font-mono text-sm text-subtle">{entry.period}</p>
                   <div>
                     <p className="font-medium">
                       {entry.role}
@@ -70,7 +97,7 @@ export function About() {
 
           <Reveal>
             <h3 className="text-lg font-medium tracking-tight">Certifications</h3>
-            <ul id="certification-list" className="mt-6 grid gap-x-8 gap-y-5 sm:grid-cols-2">
+            <ul id="certification-list" className="mt-6 grid gap-3 sm:grid-cols-2">
               {visibleCerts.map((cert) => (
                 <CertificationItem key={cert.title} cert={cert} />
               ))}
