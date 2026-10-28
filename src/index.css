@@ -153,7 +153,21 @@
     .project-grid { grid-template-columns: 1fr; gap: 1.25rem; margin-top: 2rem; }
     .project-card-featured { display: flex; }
     .project-card-featured .project-visual-mat { min-height: 0; aspect-ratio: 16 / 9; border-right: 0; }
-    .project-card-featured > div:last-child { padding: 1.35rem; }
+  .project-card-featured > div:last-child { padding: 1.35rem; }
+  }
+}
+
+@layer components {
+  .contact-content > *,
+  .contact-direct { min-width: 0; }
+
+  .contact-email-link {
+    max-width: 100%;
+    font-size: clamp(1.15rem, 2.1vw, 2rem);
+    letter-spacing: -0.055em;
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 }
 
@@ -671,4 +685,9 @@
     .project-card-featured .project-visual-mat { min-height: 0; aspect-ratio: 16 / 9; border-right: 0; }
     .project-card-featured > div:last-child { padding: 1.35rem; }
   }
+}
+
+@layer components {
+  .contact-content > *, .contact-direct { min-width: 0; }
+  .contact-email-link { max-width: 100%; font-size: clamp(1.15rem, 2.1vw, 2rem); letter-spacing: -0.055em; line-height: 1.12; overflow-wrap: anywhere; word-break: break-word; }
 }
