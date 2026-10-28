@@ -1,44 +1,39 @@
 import { toolGroups, type ToolGroup } from '../../data/stack'
-import { cn } from '../../lib/cn'
 import { BrandIcon } from '../ui/BrandIcon'
 import { Reveal } from '../ui/Reveal'
 import { Section, SectionHeading } from '../ui/Section'
 
-function ToolGroupCard({ group, isPrimary }: { group: ToolGroup; isPrimary: boolean }) {
+function ToolGroupRow({ group, index }: { group: ToolGroup; index: number }) {
   return (
-    <div
-      className={cn(
-        'h-full border-t p-6 md:p-8',
-        isPrimary ? 'border-accent border-t-2 bg-tint' : 'border-line bg-transparent',
-      )}
-    >
-      <h3 className={cn('font-medium tracking-tight', isPrimary ? 'text-2xl' : 'text-lg')}>{group.title}</h3>
-      <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">{group.description}</p>
-      <ul aria-label={group.title} className="mt-6 flex flex-wrap gap-2">
+    <article className="stack-group">
+      <div className="stack-group-index">0{index + 1}</div>
+      <div className="stack-group-copy">
+        <h3>{group.title}</h3>
+        <p>{group.description}</p>
+      </div>
+      <ul aria-label={group.title} className="stack-tools">
         {group.tools.map(({ name, icon }) => (
-           <li
-             key={name}
-             className="inline-flex items-center gap-2 border-b border-line px-1 py-1.5 text-sm transition-colors hover:border-accent hover:text-accent"
-          >
+          <li key={name}>
             {icon && <BrandIcon icon={icon} className="text-muted" />}
             {name}
           </li>
         ))}
       </ul>
-    </div>
+    </article>
   )
 }
 
-// Default export so LazyStack can code-split it with React.lazy.
 export default function Stack() {
   return (
-    <Section id="stack" labelledBy="stack-heading">
-      {/* No Reveal here: the loading placeholder already showed this heading. */}
-      <SectionHeading id="stack-heading" title="Tools I work with" />
-      <div className="mt-12 grid gap-5 md:grid-cols-3">
+    <Section id="stack" labelledBy="stack-heading" className="stack-section">
+      <div className="stack-heading-row">
+        <SectionHeading id="stack-heading" title="Tools I work with" />
+        <p className="stack-heading-note">A practical stack, chosen for the work rather than the trend.</p>
+      </div>
+      <div className="stack-list">
         {toolGroups.map((group, index) => (
-          <Reveal key={group.id} className={index === 0 ? 'md:col-span-3' : undefined} delay={index * 0.06}>
-            <ToolGroupCard group={group} isPrimary={index === 0} />
+          <Reveal key={group.id} delay={index * 0.06}>
+            <ToolGroupRow group={group} index={index} />
           </Reveal>
         ))}
       </div>
