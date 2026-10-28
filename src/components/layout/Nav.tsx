@@ -2,8 +2,7 @@ import { ArrowUpRightIcon, ListIcon, XIcon } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
 import { navItems, profile } from '../../data/profile'
 import { ThemeToggle } from '../ui/ThemeToggle'
-const LINK_CLASS =
-  'px-2 py-2 text-sm text-muted transition-colors hover:text-accent'
+const LINK_CLASS = 'site-nav-link'
 
 export function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -25,11 +24,11 @@ export function Nav() {
 
   return (
     // z-40: the only sticky layer on the page; the skip link sits above it at z-50.
-      <header className="sticky top-0 z-40 border-b border-line bg-canvas/95 backdrop-blur-md">
-      <nav aria-label="Main">
-        <div className="mx-auto flex h-[4.25rem] max-w-6xl items-center justify-between px-5 md:px-8">
-          <a href="#top" className="group inline-flex items-center gap-3 font-semibold tracking-tight">
-            <span aria-hidden className="grid size-7 place-items-center border border-accent text-[0.65rem] font-bold tracking-[-0.12em] text-accent transition-colors group-hover:bg-accent group-hover:text-[#1a1b19]">GK</span>
+      <header className="site-header">
+        <nav aria-label="Main">
+        <div className="site-nav-shell">
+          <a href="#top" className="site-brand">
+            <span aria-hidden>GK</span>
             <span>{profile.name}</span>
           </a>
 
@@ -43,7 +42,7 @@ export function Nav() {
                 </li>
               ))}
             </ul>
-            <a href="#contact" className="hidden items-center gap-1 border-b border-accent pb-1 text-sm font-medium text-accent md:inline-flex">
+            <a href="#contact" className="site-nav-cta hidden md:inline-flex">
               Let&apos;s talk <ArrowUpRightIcon aria-hidden size={14} />
             </a>
             <ThemeToggle />
@@ -54,7 +53,7 @@ export function Nav() {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-              className="grid size-10 place-items-center text-ink md:hidden"
+              className="site-menu-toggle md:hidden"
             >
               {isMenuOpen ? <XIcon aria-hidden size={20} /> : <ListIcon aria-hidden size={20} />}
             </button>
@@ -62,11 +61,11 @@ export function Nav() {
         </div>
 
         {isMenuOpen && (
-          <div id="mobile-menu" className="border-b border-ink bg-canvas md:hidden">
-            <ul className="mx-auto flex max-w-6xl flex-col px-3 py-3">
+          <div id="mobile-menu" className="site-mobile-menu md:hidden">
+            <ul>
               {navItems.map(({ label, href }) => (
                 <li key={href} className="border-b border-line last:border-0">
-                  <a href={href} onClick={closeMenu} className={`${LINK_CLASS} block py-3 text-base`}>
+                  <a href={href} onClick={closeMenu} className={`${LINK_CLASS} site-mobile-link`}>
                     {label}
                   </a>
                 </li>

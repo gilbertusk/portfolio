@@ -11,9 +11,7 @@ function getInitialTheme(): Theme {
     // Storage can be unavailable in privacy-restricted browsing contexts.
   }
 
-  const theme: Theme = savedTheme === 'dark' || savedTheme === 'light'
-    ? savedTheme
-    : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  const theme: Theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'dark'
 
   document.documentElement.dataset.theme = theme
   return theme
@@ -39,7 +37,7 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       aria-label={`Switch to ${nextTheme} mode`}
       title={`Switch to ${nextTheme} mode`}
-      className="grid size-10 place-items-center border border-line bg-surface text-ink transition-colors hover:bg-tint active:scale-[0.96]"
+      className="theme-toggle transition-colors hover:border-accent hover:text-accent active:scale-[0.96]"
     >
       {theme === 'dark' ? <SunIcon aria-hidden size={18} /> : <MoonIcon aria-hidden size={18} />}
     </button>

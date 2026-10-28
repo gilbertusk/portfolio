@@ -7,6 +7,8 @@ const PHOTO_ALT = 'Portrait of Gilbertus Kristo with arms crossed, in front of a
 export function Hero() {
   return (
     <section id="top" aria-labelledby="hero-heading" className="hero-pattern">
+      <img src={profileImage} alt={PHOTO_ALT} className="hero-background" width={853} height={893} fetchPriority="high" />
+      <div aria-hidden className="hero-shade" />
       <div className="hero-shell">
         <div className="hero-topline">
           <span>01 / Portfolio</span>
@@ -14,41 +16,20 @@ export function Hero() {
         </div>
 
         <div className="hero-intro">
-          <div className="hero-copy">
-            <p className="hero-role">{profile.role}</p>
-            <h1 id="hero-heading" className="hero-title">
-              Gilbertus <span>Kristo.</span>
-            </h1>
+          <p className="hero-welcome">Welcome</p>
+          <h1 id="hero-heading" className="hero-title">
+            Gilbertus <span>Kristo.</span>
+          </h1>
+          <p className="hero-role">{profile.role}</p>
+          <div className="hero-actions">
+            <a href="#work" className="hero-primary-link">View my work <ArrowUpRightIcon aria-hidden size={16} /></a>
+            <a href="#contact" className="hero-secondary-link">Hire me <ArrowUpRightIcon aria-hidden size={14} /></a>
           </div>
-
-          <figure className="hero-portrait">
-            <img
-              src={profileImage}
-              alt={PHOTO_ALT}
-              width={853}
-              height={893}
-              fetchPriority="high"
-              className="aspect-[4/5] w-full object-cover object-top grayscale"
-            />
-            <figcaption>Person behind the work / 01</figcaption>
-          </figure>
         </div>
 
         <div className="hero-bottom">
-          <p className="hero-description">
-            I build computer vision, OCR, and backend tools that make everyday work easier.
-          </p>
-          <div className="hero-details">
-            <p>{profile.availability}</p>
-            <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
-              <a href="#work" className="hero-primary-link">
-                View my work <ArrowUpRightIcon aria-hidden size={17} />
-              </a>
-              <a href="#about" className="hero-secondary-link">
-                About me <ArrowUpRightIcon aria-hidden size={14} />
-              </a>
-            </div>
-          </div>
+          <p className="hero-description">I build computer vision, OCR, and backend tools that make everyday work easier.</p>
+          <p className="hero-details">{profile.availability}</p>
         </div>
 
         <div className="hero-proof" aria-label="Selected project results">

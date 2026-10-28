@@ -22,9 +22,9 @@ export default function App() {
         <Nav />
         <main id="main">
           <Hero />
+          <About />
           <SelectedWork />
           <LazyStack />
-          <About />
           <Contact />
         </main>
         <Footer />

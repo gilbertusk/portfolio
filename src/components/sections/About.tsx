@@ -1,5 +1,6 @@
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
 import { useState } from 'react'
+import profileImage from '../../assets/profile.webp'
 import { VISIBLE_CERTIFICATIONS, bio, certifications, timeline, type Certification } from '../../data/about'
 import { Reveal } from '../ui/Reveal'
 import { Section, SectionHeading } from '../ui/Section'
@@ -38,6 +39,7 @@ function AboutVisual() {
       aria-label="AI build principles: measure, wire, and ship"
       className="about-visual mt-10"
     >
+      <img src={profileImage} alt="Gilbertus Kristo working on a project" width={853} height={893} loading="lazy" />
       <figcaption className="about-visual-caption">
         <span>Working principle</span>
         <span className="font-mono">01 / 03</span>

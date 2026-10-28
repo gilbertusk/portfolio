@@ -8,14 +8,14 @@ describe('ThemeToggle', () => {
     document.documentElement.removeAttribute('data-theme')
   })
 
-  it('switches to dark mode and remembers the choice', () => {
+  it('switches to light mode and remembers the choice', () => {
     render(<ThemeToggle />)
 
-    fireEvent.click(screen.getByRole('button', { name: 'Switch to dark mode' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Switch to light mode' }))
 
-    expect(document.documentElement).toHaveAttribute('data-theme', 'dark')
-    expect(localStorage.getItem('portfolio-theme')).toBe('dark')
-    expect(screen.getByRole('button', { name: 'Switch to light mode' })).toBeInTheDocument()
+    expect(document.documentElement).toHaveAttribute('data-theme', 'light')
+    expect(localStorage.getItem('portfolio-theme')).toBe('light')
+    expect(screen.getByRole('button', { name: 'Switch to dark mode' })).toBeInTheDocument()
   })
 
   it('switches back to light mode', () => {
