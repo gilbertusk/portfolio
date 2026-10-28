@@ -18,7 +18,7 @@ export function ProjectFlowImage({ title, flow, className }: ProjectFlowImagePro
         {flow.input}
       </span>
       <span aria-hidden className="relative z-10 text-center text-xs text-subtle">→</span>
-      <span className="relative z-10 grid min-w-0 h-8 place-items-center bg-ink px-1 text-center font-mono text-[0.65rem] leading-none text-surface shadow-[2px_3px_0_#b7b7b0]">
+      <span className="relative z-10 grid min-w-0 h-8 place-items-center bg-ink px-1 text-center font-mono text-[0.65rem] leading-none text-surface">
         {flow.model}
       </span>
       <span aria-hidden className="relative z-10 text-center text-xs text-subtle">→</span>

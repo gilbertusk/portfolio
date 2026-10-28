@@ -35,7 +35,7 @@ function CertificationItem({ cert }: { cert: Certification }) {
 function AboutVisual() {
   return (
     <figure
-      aria-label="Layered illustration of an AI build loop: model, workflow, and product"
+      aria-label="AI build principles: measure, wire, and ship"
       className="about-visual mt-10"
     >
       <figcaption className="about-visual-caption">
@@ -43,11 +43,12 @@ function AboutVisual() {
         <span className="font-mono">01 / 03</span>
       </figcaption>
       <div className="about-visual-stage" aria-hidden="true">
-        <div className="about-cube-stack">
-          <div className="about-cube about-cube-product"><span>03</span><strong>SHIP IT</strong><small>useful in the real workflow</small></div>
-          <div className="about-cube about-cube-workflow"><span>02</span><strong>WIRE IT</strong><small>reliable beyond the demo</small></div>
-          <div className="about-cube about-cube-model"><span>01</span><strong>MEASURE IT</strong><small>evidence before opinion</small></div>
-        </div>
+        <p className="about-visual-statement">Make the useful thing, then make it hold.</p>
+        <ol className="about-principles">
+          <li><span>01</span><strong>Measure it</strong><small>evidence before opinion</small></li>
+          <li><span>02</span><strong>Wire it</strong><small>reliable beyond the demo</small></li>
+          <li><span>03</span><strong>Ship it</strong><small>useful in the real workflow</small></li>
+        </ol>
       </div>
       <p className="about-visual-footnote">A model is only useful when the surrounding system is dependable.</p>
     </figure>

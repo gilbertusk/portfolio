@@ -49,7 +49,7 @@ export function Hero() {
               width={853}
               height={893}
               fetchPriority="high"
-              className="aspect-[4/5] w-full object-cover object-top grayscale-[0.15]"
+              className="aspect-[4/5] w-full object-cover object-top grayscale"
             />
             <figcaption className="absolute bottom-0 left-0 border-t border-r border-ink bg-canvas px-3 py-2 font-mono text-[0.62rem] tracking-wide uppercase">
               Person behind the work / 01

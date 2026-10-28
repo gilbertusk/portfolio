@@ -32,13 +32,8 @@ function getPreviewAddress(project: Project) {
 
 function BrowserBar({ address }: { address: string }) {
   return (
-    <div aria-hidden className="flex h-6 flex-none items-center gap-2 border-b border-ink bg-surface px-2">
-      <span className="flex gap-1">
-        <span className="size-1.5 rounded-full bg-ink" />
-        <span className="size-1.5 rounded-full border border-ink" />
-        <span className="size-1.5 rounded-full border border-ink" />
-      </span>
-      <span className="min-w-0 flex-1 truncate bg-surface-2 px-2 py-0.5 font-mono text-[0.55rem] leading-none text-subtle">
+    <div aria-hidden className="flex h-7 flex-none items-center border-b border-line bg-surface px-2.5">
+      <span className="min-w-0 truncate font-mono text-[0.55rem] leading-none text-subtle">
         {address}
       </span>
     </div>
@@ -50,9 +45,9 @@ function MetricBadge({ project }: { project: Project }) {
   if (!metric) return null
 
   return (
-    <p className="absolute bottom-5 left-5 z-10 flex max-w-[70%] items-baseline gap-2 bg-ink px-2.5 py-1.5 text-surface">
+    <p className="absolute bottom-5 left-5 z-10 flex max-w-[70%] items-baseline gap-2 border border-ink bg-surface px-2.5 py-1.5 text-ink">
       <span className="text-lg leading-none font-medium tracking-[-0.04em]">{metric.value}</span>
-      <span className="truncate font-mono text-[0.55rem] leading-none text-surface/70 uppercase">{metric.label}</span>
+      <span className="truncate font-mono text-[0.55rem] leading-none text-muted uppercase">{metric.label}</span>
     </p>
   )
 }

@@ -11,7 +11,7 @@ describe('About', () => {
   it('shows a visual summary beside the bio and labels the experience timeline', () => {
     render(<About />)
 
-    expect(screen.getByRole('figure', { name: /layered illustration of an ai build loop/i })).toBeInTheDocument()
+    expect(screen.getByRole('figure', { name: /ai build principles: measure, wire, and ship/i })).toBeInTheDocument()
     expect(screen.getByRole('list', { name: 'Experience timeline' })).toBeInTheDocument()
   })
 

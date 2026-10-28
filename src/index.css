@@ -23,34 +23,34 @@
 
 :root {
   color-scheme: light;
-  --canvas: #f4f3ef;
-  --surface: #fbfaf7;
-  --surface-2: #e8e7e1;
-  --ink: #1a1b19;
-  --muted: #52534e;
-  --subtle: #74756e;
-  --line: #c9c9c0;
-  --accent: #d4633f;
-  --accent-soft: rgb(212 99 63 / 0.14);
-  --tint: #ece8df;
-  --pattern-line: #d6d5ce;
-  --pattern-strong: #bcbcb3;
+  --canvas: #f6f6f3;
+  --surface: #fbfbf9;
+  --surface-2: #e9e9e5;
+  --ink: #171716;
+  --muted: #525250;
+  --subtle: #757572;
+  --line: #c9c9c5;
+  --accent: #171716;
+  --accent-soft: rgb(23 23 22 / 0.08);
+  --tint: #eeeeea;
+  --pattern-line: #dcdcd7;
+  --pattern-strong: #b9b9b3;
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --canvas: #151614;
-  --surface: #1e201d;
-  --surface-2: #2a2b26;
-  --ink: #f4f2ec;
-  --muted: #c2c3b9;
-  --subtle: #999b91;
-  --line: #474941;
-  --accent: #e77a56;
-  --accent-soft: rgb(231 122 86 / 0.18);
-  --tint: #282a25;
-  --pattern-line: #363832;
-  --pattern-strong: #565950;
+  --canvas: #111110;
+  --surface: #1b1b19;
+  --surface-2: #262624;
+  --ink: #f0f0eb;
+  --muted: #c2c2bb;
+  --subtle: #999994;
+  --line: #474744;
+  --accent: #f0f0eb;
+  --accent-soft: rgb(240 240 235 / 0.14);
+  --tint: #242422;
+  --pattern-line: #363633;
+  --pattern-strong: #575752;
 }
 
 @layer base {
@@ -68,8 +68,6 @@
 
   body {
     @apply bg-canvas text-ink font-sans antialiased;
-    background-image: radial-gradient(var(--pattern-line) 0.55px, transparent 0.55px);
-    background-size: 22px 22px;
   }
 
   ::selection {
@@ -92,39 +90,16 @@
   }
 
   .hero-pattern::before {
-    content: '';
-    position: absolute;
-    inset: 0 auto 0 0;
-    z-index: -1;
-    width: 56%;
-    background-image:
-      linear-gradient(to right, var(--pattern-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--pattern-line) 1px, transparent 1px);
-    background-size: 32px 32px;
-    opacity: 0.3;
-    mask-image: linear-gradient(to right, #000 0%, #000 28%, transparent 90%);
-    pointer-events: none;
+    display: none;
   }
 
   .hero-pattern::after {
-    content: '';
-    position: absolute;
-    top: 7rem;
-    right: 4%;
-    z-index: -1;
-    width: 13rem;
-    height: 4rem;
-    aspect-ratio: auto;
-    border: 0;
-    border-top: 1px solid var(--accent);
-    border-bottom: 1px solid var(--accent);
-    opacity: 0.75;
-    pointer-events: none;
+    display: none;
   }
 
   .photo-hatch {
-    background: var(--accent);
-    opacity: 0.9;
+    background: var(--ink);
+    opacity: 0.08;
   }
 
   .work-pattern {
@@ -133,23 +108,14 @@
   }
 
   .work-pattern::after {
-    content: '';
-    position: absolute;
-    right: 5%;
-    bottom: 0;
-    width: 11rem;
-    height: 3.5rem;
-    background-image: radial-gradient(var(--accent) 0.7px, transparent 0.9px);
-    background-size: 10px 10px;
-    opacity: 0.42;
-    pointer-events: none;
+    display: none;
   }
 
   .contact-card {
     position: relative;
     overflow: hidden;
     border: 1px solid var(--line);
-    border-top: 2px solid var(--accent);
+    border-top: 1px solid var(--ink);
     background: var(--surface);
     padding: clamp(1.5rem, 4.5vw, 4rem);
   }
@@ -280,7 +246,7 @@
     overflow: hidden;
     isolation: isolate;
     border: 1px solid var(--line);
-    background: var(--tint);
+    background: var(--surface);
   }
 
   .about-visual::after {
@@ -293,7 +259,7 @@
     aspect-ratio: 1;
     border: 1px solid var(--pattern-strong);
     border-radius: 0;
-    border-color: var(--accent);
+    border-color: var(--ink);
     box-shadow: none;
   }
 
@@ -328,78 +294,54 @@
   .about-visual-stage {
     position: absolute;
     inset: 3.5rem 0 3.5rem;
-    display: grid;
-    place-items: center;
-    transform-style: preserve-3d;
-  }
-
-  .about-cube-stack {
-    position: relative;
-    width: min(76%, 21rem);
-    height: 12rem;
-  }
-
-  .about-cube {
-    position: absolute;
     display: flex;
-    width: 100%;
-    height: 4.8rem;
     flex-direction: column;
-    justify-content: center;
-    border: 1px solid var(--line);
-    padding: 0.7rem 1rem;
-    background: var(--surface);
-    box-shadow: none;
-    transition: transform 200ms ease, background-color 200ms ease;
+    justify-content: space-between;
+    padding: 0 1rem;
   }
 
-  .about-cube span {
+  .about-visual-statement {
+    max-width: 13ch;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 500;
+    letter-spacing: -0.08em;
+    line-height: 0.94;
+  }
+
+  .about-principles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .about-principles li {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    padding: 0.7rem;
+    background: var(--surface);
+  }
+
+  .about-principles span {
     color: var(--subtle);
     font-family: var(--font-mono);
     font-size: 0.58rem;
   }
 
-  .about-cube strong {
-    margin-top: 0.1rem;
-    font-size: 1rem;
+  .about-principles strong {
+    margin-top: 1rem;
+    font-size: 0.85rem;
     letter-spacing: -0.04em;
   }
 
-  .about-cube small {
+  .about-principles small {
+    margin-top: 0.25rem;
     color: var(--muted);
     font-size: 0.68rem;
-  }
-
-  .about-cube-model {
-    z-index: 3;
-    top: 0;
-    transform: translateX(-0.8rem);
-  }
-
-  .about-cube-workflow {
-    z-index: 2;
-    top: 2.6rem;
-    transform: translateX(0.4rem);
-  }
-
-  .about-cube-product {
-    z-index: 1;
-    top: 5.2rem;
-    transform: translateX(1.6rem);
-  }
-
-  @media (hover: hover) {
-    .about-visual:hover .about-cube-model {
-      transform: translateX(-1.5rem);
-    }
-
-    .about-visual:hover .about-cube-workflow {
-      transform: translateX(0.8rem);
-    }
-
-    .about-visual:hover .about-cube-product {
-      transform: translateX(2.2rem);
-    }
   }
 
   .experience-timeline {
@@ -451,8 +393,9 @@
 
   /* Cards stay quiet so the project media, not decoration, carries the hierarchy. */
   .project-card {
-    background: var(--surface);
-    border: 1px solid var(--line);
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--line);
     box-shadow: none;
     transition: transform 200ms ease, border-color 200ms ease;
   }
@@ -482,7 +425,7 @@
     width: 0.4rem;
     height: 0.4rem;
     border-radius: 50%;
-    background: var(--accent);
+    background: var(--ink);
     box-shadow: 0 0 0 2px var(--accent-soft);
   }
 
@@ -491,14 +434,7 @@
   }
 
   .project-carousel-shell::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 1.25rem;
-    width: 3rem;
-    background: linear-gradient(to right, transparent, var(--canvas));
-    pointer-events: none;
+    display: none;
   }
 
   .project-carousel {
@@ -522,8 +458,6 @@
   /* The mat frames each visual like a mounted print: hatch texture around a hard-edged frame. */
   .project-visual-mat {
     background-color: var(--surface-2);
-    background-image: radial-gradient(var(--pattern-strong) 0.55px, transparent 0.8px);
-    background-size: 9px 9px;
   }
 
   .project-visual-frame {
@@ -536,7 +470,7 @@
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.06em;
-    color: var(--accent);
+    color: var(--ink);
     opacity: 0.8;
     transition: opacity 200ms ease;
   }
@@ -548,8 +482,6 @@
 
   .project-flow {
     background-color: var(--surface-2);
-    background-image: radial-gradient(var(--pattern-strong) 0.55px, transparent 0.8px);
-    background-size: 9px 9px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -558,7 +490,6 @@
       transition: none;
     }
 
-    .about-cube,
     .certification-tile {
       transition: none;
     }
@@ -583,6 +514,10 @@
 
     .contact-card {
       padding: 1.5rem;
+    }
+
+    .about-principles {
+      grid-template-columns: 1fr;
     }
 
     .contact-card-heading {
