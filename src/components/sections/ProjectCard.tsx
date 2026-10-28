@@ -218,7 +218,7 @@ function ProjectFooter({ project }: { project: Project }) {
 
 export function ProjectCard({ project, number }: { project: Project; number: number }) {
   return (
-    <li className="project-card group/card flex w-[min(84vw,19rem)] flex-none snap-start flex-col overflow-hidden">
+    <li className={`project-card group/card flex flex-col overflow-hidden ${number === 1 ? 'project-card-featured' : ''}`}>
       <ProjectVisual project={project} />
       <div className="relative flex flex-1 flex-col p-5">
         <span aria-hidden className="project-card-number absolute top-3 right-4">
