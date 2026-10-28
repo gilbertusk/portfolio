@@ -50,7 +50,7 @@ function MetricBadge({ project }: { project: Project }) {
   if (!metric) return null
 
   return (
-    <p className="absolute bottom-5 left-5 z-10 flex max-w-[70%] items-baseline gap-2 bg-ink px-2.5 py-1.5 text-surface shadow-[2px_2px_0_var(--surface)]">
+    <p className="absolute bottom-5 left-5 z-10 flex max-w-[70%] items-baseline gap-2 bg-ink px-2.5 py-1.5 text-surface">
       <span className="text-lg leading-none font-medium tracking-[-0.04em]">{metric.value}</span>
       <span className="truncate font-mono text-[0.55rem] leading-none text-surface/70 uppercase">{metric.label}</span>
     </p>
@@ -59,7 +59,7 @@ function MetricBadge({ project }: { project: Project }) {
 
 function StatusChip({ label }: { label: string }) {
   return (
-    <span className="absolute top-10 right-5 z-10 inline-flex items-center gap-1.5 border border-ink bg-surface px-2 py-1 font-mono text-[0.6rem] leading-none tracking-wide text-ink uppercase shadow-[2px_2px_0_var(--ink)]">
+    <span className="absolute top-10 right-5 z-10 inline-flex items-center gap-1.5 border border-ink bg-surface px-2 py-1 font-mono text-[0.6rem] leading-none tracking-wide text-ink uppercase">
       {label === 'Live' && <span aria-hidden className="project-live-dot" />}
       {label === 'Private' && <LockSimpleIcon aria-hidden size={10} />}
       {label}
@@ -67,28 +67,19 @@ function StatusChip({ label }: { label: string }) {
   )
 }
 
-/** Stands in for a screenshot: a terminal session that "opens" the project. */
-function TerminalVisual({ project }: { project: Project }) {
-  const status = getStatusLabel(project) ?? 'Public'
+/** A quiet project note for work without a screenshot, instead of a fake product UI. */
+function ProjectNote({ project }: { project: Project }) {
+  const status = getStatusLabel(project) ?? 'Public work'
 
   return (
-    <div aria-hidden className="project-terminal flex h-full flex-col font-mono text-[0.62rem] leading-relaxed">
-      <div className="flex items-center gap-1.5 border-b border-white/10 px-3 py-2">
-        <span className="size-1.5 bg-white/30" />
-        <span className="size-1.5 bg-white/30" />
-        <span className="size-1.5 bg-white/30" />
-        <span className="ml-2 truncate text-white/45">~/{project.id}</span>
-      </div>
-      <div className="flex-1 px-3 py-2.5 text-white/60">
-        <p>
-          <span className="text-white/35">$</span> <span className="text-white">open {project.id}</span>
-        </p>
-        <p><span className="text-white/35">›</span> type&nbsp;&nbsp;&nbsp;{project.category}</p>
-        <p><span className="text-white/35">›</span> stack&nbsp;&nbsp;{project.stack.length} tools</p>
-        <p>
-          <span className="text-white/35">›</span> state&nbsp;&nbsp;<span className="text-white">{status.toLowerCase()}</span>
-          <span className="project-terminal-cursor" />
-        </p>
+    <div aria-hidden className="flex h-full flex-col justify-between bg-tint p-5">
+      <p className="font-mono text-[0.62rem] tracking-[0.16em] text-accent uppercase">Project note</p>
+      <div>
+        <p className="max-w-[12ch] text-3xl font-medium leading-[0.95] tracking-[-0.07em]">{project.category}</p>
+        <div className="mt-5 flex items-center justify-between border-t border-line pt-3 font-mono text-[0.62rem] text-subtle">
+          <span>{status}</span>
+          <span>{project.year}</span>
+        </div>
       </div>
     </div>
   )
@@ -117,7 +108,7 @@ function ProjectVisual({ project }: { project: Project }) {
       </div>
     )
   } else {
-    media = <TerminalVisual project={project} />
+    media = <ProjectNote project={project} />
   }
 
   const hasTerminal = !project.image && !project.flow

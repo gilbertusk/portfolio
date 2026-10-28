@@ -10,7 +10,7 @@ interface SectionProps {
 
 export function Section({ id, labelledBy, className, children }: SectionProps) {
   return (
-    <section id={id} aria-labelledby={labelledBy} className={cn('py-16 md:py-20', className)}>
+    <section id={id} aria-labelledby={labelledBy} className={cn('py-20 md:py-28', className)}>
       <div className="mx-auto max-w-6xl px-5 md:px-8">{children}</div>
     </section>
   )
@@ -25,7 +25,7 @@ interface SectionHeadingProps {
 export function SectionHeading({ id, title, intro }: SectionHeadingProps) {
   return (
     <div className="max-w-2xl">
-      <h2 id={id} className="text-3xl font-medium tracking-[-0.055em] text-balance md:text-[2.5rem] md:leading-[1.1]">
+      <h2 id={id} className="text-4xl font-medium tracking-[-0.07em] text-balance md:text-5xl md:leading-[1.02]">
         {title}
       </h2>
       {intro && <p className="mt-4 text-lg leading-relaxed text-muted">{intro}</p>}

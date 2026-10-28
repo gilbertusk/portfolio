@@ -39,21 +39,17 @@ function AboutVisual() {
       className="about-visual mt-10"
     >
       <figcaption className="about-visual-caption">
-        <span>How I build</span>
+        <span>Working principle</span>
         <span className="font-mono">01 / 03</span>
       </figcaption>
       <div className="about-visual-stage" aria-hidden="true">
-        <div className="about-orbit about-orbit-one" />
-        <div className="about-orbit about-orbit-two" />
-        <span className="about-orbit-dot about-orbit-dot-one" />
-        <span className="about-orbit-dot about-orbit-dot-two" />
         <div className="about-cube-stack">
-          <div className="about-cube about-cube-product"><span>03</span><strong>PRODUCT</strong><small>usable by people</small></div>
-          <div className="about-cube about-cube-workflow"><span>02</span><strong>WORKFLOW</strong><small>reliable in practice</small></div>
-          <div className="about-cube about-cube-model"><span>01</span><strong>MODEL</strong><small>measured, not guessed</small></div>
+          <div className="about-cube about-cube-product"><span>03</span><strong>SHIP IT</strong><small>useful in the real workflow</small></div>
+          <div className="about-cube about-cube-workflow"><span>02</span><strong>WIRE IT</strong><small>reliable beyond the demo</small></div>
+          <div className="about-cube about-cube-model"><span>01</span><strong>MEASURE IT</strong><small>evidence before opinion</small></div>
         </div>
       </div>
-      <p className="about-visual-footnote">From a model that works to a system people can trust.</p>
+      <p className="about-visual-footnote">A model is only useful when the surrounding system is dependable.</p>
     </figure>
   )
 }

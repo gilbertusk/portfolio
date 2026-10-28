@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { navItems, profile } from '../../data/profile'
 import { ThemeToggle } from '../ui/ThemeToggle'
 const LINK_CLASS =
-  'px-2 py-2 text-sm text-muted underline-offset-4 transition-colors hover:text-ink hover:underline'
+  'px-2 py-2 text-sm text-muted transition-colors hover:text-accent'
 
 export function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -25,11 +25,11 @@ export function Nav() {
 
   return (
     // z-40: the only sticky layer on the page; the skip link sits above it at z-50.
-    <header className="sticky top-0 z-40 bg-canvas/95 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-line bg-canvas/95 backdrop-blur-md">
       <nav aria-label="Main">
-        <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between border-b border-ink px-5 md:px-8">
-          <a href="#top" className="inline-flex items-center gap-3 font-semibold tracking-tight">
-            <span aria-hidden className="grid size-8 place-items-center bg-ink text-[0.7rem] font-bold tracking-[-0.12em] text-surface">GK</span>
+        <div className="mx-auto flex h-[4.25rem] max-w-6xl items-center justify-between px-5 md:px-8">
+          <a href="#top" className="group inline-flex items-center gap-3 font-semibold tracking-tight">
+            <span aria-hidden className="grid size-7 place-items-center border border-accent text-[0.65rem] font-bold tracking-[-0.12em] text-accent transition-colors group-hover:bg-accent group-hover:text-[#1a1b19]">GK</span>
             <span>{profile.name}</span>
           </a>
 
@@ -43,7 +43,7 @@ export function Nav() {
                 </li>
               ))}
             </ul>
-            <a href="#contact" className="hidden items-center gap-1 border-b border-ink pb-1 text-sm font-medium md:inline-flex">
+            <a href="#contact" className="hidden items-center gap-1 border-b border-accent pb-1 text-sm font-medium text-accent md:inline-flex">
               Let&apos;s talk <ArrowUpRightIcon aria-hidden size={14} />
             </a>
             <ThemeToggle />

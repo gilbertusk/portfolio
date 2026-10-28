@@ -33,16 +33,16 @@ export function SelectedWork() {
   }
 
   return (
-    <Section id="work" labelledBy="work-heading" className="work-pattern border-t border-ink">
-      <div className="mx-auto max-w-5xl">
+    <Section id="work" labelledBy="work-heading" className="work-pattern border-t-2 border-accent">
+      <div className="mx-auto max-w-6xl">
         <Reveal>
           <div className="flex flex-col justify-between gap-4 border-b border-ink pb-5 sm:flex-row sm:items-end">
             <div>
-              <p className="font-mono text-xs tracking-widest text-subtle uppercase">01 / Selected work</p>
-              <h2 id="work-heading" className="mt-2 text-3xl font-medium tracking-[-0.06em]">Projects.</h2>
+              <p className="font-mono text-xs tracking-[0.16em] text-accent uppercase">Selected work</p>
+              <h2 id="work-heading" className="mt-3 text-4xl font-medium tracking-[-0.07em] md:text-5xl">Projects that leave a trace.</h2>
             </div>
-            <p className="max-w-sm text-sm leading-snug text-muted">
-              AI, automation, and backend systems in one collection. Swipe or use the arrows to explore.
+            <p className="max-w-sm text-sm leading-relaxed text-muted">
+              Small experiments and working systems across computer vision, OCR, and backend engineering.
             </p>
           </div>
         </Reveal>

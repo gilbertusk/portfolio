@@ -8,17 +8,17 @@ function ToolGroupCard({ group, isPrimary }: { group: ToolGroup; isPrimary: bool
   return (
     <div
       className={cn(
-        'h-full border p-6 md:p-8',
-        isPrimary ? 'border-ink bg-tint' : 'border-line bg-surface',
+        'h-full border-t p-6 md:p-8',
+        isPrimary ? 'border-accent border-t-2 bg-tint' : 'border-line bg-transparent',
       )}
     >
       <h3 className={cn('font-medium tracking-tight', isPrimary ? 'text-2xl' : 'text-lg')}>{group.title}</h3>
       <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">{group.description}</p>
       <ul aria-label={group.title} className="mt-6 flex flex-wrap gap-2">
         {group.tools.map(({ name, icon }) => (
-          <li
-            key={name}
-            className="inline-flex items-center gap-2 border border-line bg-surface px-3 py-1.5 text-sm"
+           <li
+             key={name}
+             className="inline-flex items-center gap-2 border-b border-line px-1 py-1.5 text-sm transition-colors hover:border-accent hover:text-accent"
           >
             {icon && <BrandIcon icon={icon} className="text-muted" />}
             {name}
