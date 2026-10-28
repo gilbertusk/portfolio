@@ -21,31 +21,12 @@ function getStatusLabel(project: Project) {
   return project.isPrivate ? 'Private' : undefined
 }
 
-/** What the preview's address bar shows: the live host, else the repo or docs path. */
-function getPreviewAddress(project: Project) {
-  const link = project.links.find(isLiveLink) ?? project.links[0]
-  if (!link) return `~/${project.id}`
-
-  const { host, pathname } = new URL(link.href)
-  return `${host}${pathname}`.replace(/\/$/, '')
-}
-
-function BrowserBar({ address }: { address: string }) {
-  return (
-    <div aria-hidden className="flex h-7 flex-none items-center border-b border-line bg-surface px-2.5">
-      <span className="min-w-0 truncate font-mono text-[0.55rem] leading-none text-subtle">
-        {address}
-      </span>
-    </div>
-  )
-}
-
 function MetricBadge({ project }: { project: Project }) {
   const metric = project.metrics?.[0]
   if (!metric) return null
 
   return (
-    <p className="absolute bottom-5 left-5 z-10 flex max-w-[70%] items-baseline gap-2 border border-ink bg-surface px-2.5 py-1.5 text-ink">
+    <p className="project-metric absolute bottom-5 left-5 z-10 flex max-w-[70%] items-baseline gap-2 border border-ink bg-surface px-2.5 py-1.5 text-ink">
       <span className="text-lg leading-none font-medium tracking-[-0.04em]">{metric.value}</span>
       <span className="truncate font-mono text-[0.55rem] leading-none text-muted uppercase">{metric.label}</span>
     </p>
@@ -54,7 +35,7 @@ function MetricBadge({ project }: { project: Project }) {
 
 function StatusChip({ label }: { label: string }) {
   return (
-    <span className="absolute top-10 right-5 z-10 inline-flex items-center gap-1.5 border border-ink bg-surface px-2 py-1 font-mono text-[0.6rem] leading-none tracking-wide text-ink uppercase">
+    <span className="project-status absolute top-10 right-5 z-10 inline-flex items-center gap-1.5 border border-ink bg-surface px-2 py-1 font-mono text-[0.6rem] leading-none tracking-wide text-ink uppercase">
       {label === 'Live' && <span aria-hidden className="project-live-dot" />}
       {label === 'Private' && <LockSimpleIcon aria-hidden size={10} />}
       {label}
@@ -106,12 +87,9 @@ function ProjectVisual({ project }: { project: Project }) {
     media = <ProjectNote project={project} />
   }
 
-  const hasTerminal = !project.image && !project.flow
-
   return (
     <div className="project-visual-mat relative aspect-[4/3] border-b border-line">
       <div className="project-visual-frame absolute inset-3 flex flex-col overflow-hidden border border-ink bg-surface-2">
-        {!hasTerminal && <BrowserBar address={getPreviewAddress(project)} />}
         <div className="min-h-0 flex-1">{media}</div>
       </div>
       {statusLabel && <StatusChip label={statusLabel} />}
@@ -163,7 +141,7 @@ function ProjectFooter({ project }: { project: Project }) {
   const { primary, secondary } = splitLinks(project.links)
 
   return (
-    <div className="mt-auto flex items-center justify-between gap-3 border-t border-dashed border-line pt-4">
+    <div className="project-footer mt-auto flex items-center justify-between gap-3 border-t border-dashed border-line pt-4">
       {primary ? (
         <a
           href={primary.href}
