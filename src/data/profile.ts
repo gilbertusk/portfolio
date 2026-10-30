@@ -19,8 +19,11 @@ export const navItems = [
 ] as const
 
 export const intro = {
+  greeting: 'Hi, I’m',
+  tagline: 'AI engineer for computer vision and LLM automation.',
   summary:
-    'AI engineer in Semarang, Indonesia. I train computer vision models, wire LLMs into business workflows, and write the APIs and tests that keep them running.',
+    'I’m an Informatics Engineering student at Universitas Negeri Semarang. I train computer vision models, wire LLMs into business workflows, and write the APIs and tests that keep them running.',
+  photoAlt: 'Portrait of Gilbertus Kristo, arms crossed, smiling at the camera',
 } as const
 
 export const contactCopy = {

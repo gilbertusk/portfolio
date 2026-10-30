@@ -88,15 +88,9 @@ export const focusAreas = [
   { icon: 'server', title: 'Backend & testing', detail: 'Node.js, Python, PostgreSQL, Playwright' },
 ] as const
 
-export const workflowSteps = [
-  { icon: 'database', title: 'Data', detail: 'Collect, label, clean' },
-  { icon: 'brain', title: 'Model', detail: 'Train, evaluate, export' },
-  { icon: 'flow', title: 'Workflow', detail: 'Ship into real use' },
-] as const
-
 export const highlightStats = [
-  { value: '0.939', label: 'macro-F1 for Pilah, my on-device waste classifier', tone: 'navy' },
-  { value: '22', label: 'exercises Rep Counter recognizes from a webcam', tone: 'coral' },
+  { value: '0.939', label: 'macro-F1, Pilah waste classifier', tone: 'navy' },
+  { value: '22', label: 'exercises tracked by Rep Counter', tone: 'coral' },
 ] as const
 
 export const skillTicker = [
