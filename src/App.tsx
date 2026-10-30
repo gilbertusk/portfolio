@@ -4,6 +4,7 @@ import { Nav } from './components/layout/Nav'
 import { About } from './components/sections/About'
 import { Certifications } from './components/sections/Certifications'
 import { Contact } from './components/sections/Contact'
+import { Credentials } from './components/sections/Credentials'
 import { Intro } from './components/sections/Intro'
 import { LazyStack } from './components/sections/LazyStack'
 import { SelectedWork } from './components/sections/SelectedWork'
@@ -25,6 +26,7 @@ export default function App() {
         <main id="main">
           <Intro />
           <Ticker />
+          <Credentials />
           <SelectedWork />
           <About />
           <LazyStack />

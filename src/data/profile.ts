@@ -19,11 +19,9 @@ export const navItems = [
 ] as const
 
 export const intro = {
-  greeting: 'Hi, I’m',
-  tagline: 'AI engineer for computer vision and LLM automation.',
+  label: 'Gilbertus Kristo // AI Engineer based in Semarang, ID',
   summary:
-    'I’m an Informatics Engineering student at Universitas Negeri Semarang. I train computer vision models, wire LLMs into business workflows, and write the APIs and tests that keep them running.',
-  photoAlt: 'Portrait of Gilbertus Kristo, arms crossed, smiling at the camera',
+    'AI engineer in Semarang, Indonesia. I train computer vision models, wire LLMs into business workflows, and write the APIs and automated tests that keep them running in daily use.',
 } as const
 
 export const contactCopy = {

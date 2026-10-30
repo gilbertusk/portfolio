@@ -6,7 +6,6 @@ import {
   HandshakeIcon,
   MapPinIcon,
   QuotesIcon,
-  SmileyIcon,
   UsersIcon,
   type Icon,
 } from '@phosphor-icons/react'
@@ -41,7 +40,7 @@ function BioCard() {
         <AsteriskIcon weight="bold" className="size-7 text-blue motion-safe:animate-spin-slow md:size-10" />
       </span>
       <div className="relative flex flex-col gap-4.5">
-        <span aria-hidden className="grid h-8 w-13 place-items-center rounded-full bg-coral text-white">
+        <span aria-hidden className="grid h-8 w-13 place-items-center rounded-lg border-[1.5px] border-ink bg-coral text-white">
           <QuotesIcon weight="fill" size={16} />
         </span>
         <h3 className="max-w-xl text-[1.9rem] leading-[1.1] font-semibold tracking-[-0.03em] text-balance md:text-[2.5rem]">
@@ -60,7 +59,7 @@ function BioCard() {
             return (
               <li
                 key={fact}
-                className={cn('inline-flex items-center gap-1 rounded-full py-1.5 pr-2.5 pl-2 text-xs font-medium', className)}
+                className={cn('inline-flex items-center gap-1 rounded-md border border-ink/15 py-1.5 pr-2.5 pl-2 font-mono text-[0.7rem] font-semibold', className)}
               >
                 <FactIcon aria-hidden weight="bold" size={14} />
                 {fact}
@@ -70,7 +69,7 @@ function BioCard() {
         </ul>
         <a
           href={`mailto:${profile.email}`}
-          className="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-full bg-blue px-3.5 py-2 text-[0.95rem] font-semibold text-white transition-transform motion-safe:hover:-translate-y-0.5"
+          className="press inline-flex w-fit shrink-0 items-center gap-1.5 rounded-lg bg-blue px-3.5 py-2 font-mono text-sm font-bold text-white"
         >
           Email me
           <ArrowRightIcon aria-hidden weight="bold" size={15} />
@@ -82,10 +81,10 @@ function BioCard() {
 
 function ExperienceCard() {
   return (
-    <div className="flex flex-col gap-5 rounded-3xl bg-navy p-7 text-white">
+    <div className="hard flex flex-col gap-5 bg-navy p-7 text-white">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold">Experience</h3>
-        <span className="rounded-full bg-white/12 px-2.5 py-1 text-[0.8rem] font-medium">{timeline.length} roles</span>
+        <span className="rounded-md bg-white/12 px-2 py-0.5 font-mono text-[0.7rem] font-semibold">{timeline.length} roles</span>
       </div>
       <ol aria-label="Experience timeline" className="flex flex-col gap-1">
         {timeline.map((entry, index) => {
@@ -116,7 +115,7 @@ export function About() {
   return (
     <section id="about" aria-labelledby="about-heading" className="px-3 pt-16 md:px-8 md:pt-20">
       <div className="mx-auto flex max-w-[71rem] flex-col gap-7">
-        <SectionTitle id="about-heading" before="About" after="me" icon={SmileyIcon} tone="sky" />
+        <SectionTitle id="about-heading" label="Who I am" before="About" highlight="me" />
         <Reveal className="grid gap-4 lg:grid-cols-3">
           <BioCard />
           <ExperienceCard />

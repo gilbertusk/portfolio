@@ -1,4 +1,3 @@
-import { SparkleIcon } from '@phosphor-icons/react'
 import { getProject } from '../../data/projects'
 import { featured } from '../../data/showcase'
 import { Reveal } from '../ui/Reveal'
@@ -8,14 +7,13 @@ import { ProjectCard } from './ProjectCard'
 
 export function SelectedWork() {
   return (
-    <section id="work" aria-labelledby="work-heading" className="px-3 pb-6 md:px-8">
+    <section id="work" aria-labelledby="work-heading" className="px-3 pt-16 pb-6 md:px-8 md:pt-24">
       <div className="mx-auto flex max-w-[71rem] flex-col gap-7">
         <SectionTitle
           id="work-heading"
+          label="Production showcases"
           before="Selected"
-          after="work"
-          icon={SparkleIcon}
-          tone="coral"
+          highlight="Work"
           blurb="Models trained, evaluated, and shipped, plus the backend systems that hold them up."
         />
         <div className="flex flex-col gap-4">

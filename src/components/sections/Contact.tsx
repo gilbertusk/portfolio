@@ -34,9 +34,9 @@ function ContactCard({ label, value, href, icon: LinkIcon, iconClass }: ContactL
         {...(isExternal
           ? { target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${label} (opens in a new tab)` }
           : {})}
-        className="flex items-center gap-3.5 rounded-2xl bg-card p-3.5 pr-4 text-ink transition-transform motion-safe:hover:translate-x-1.5"
+        className="press flex items-center gap-3.5 rounded-lg bg-card p-3.5 pr-4 text-ink"
       >
-        <span className={cn('grid size-11 shrink-0 place-items-center rounded-2xl', iconClass)}>
+        <span className={cn('grid size-11 shrink-0 place-items-center rounded-lg border-[1.5px] border-ink', iconClass)}>
           <LinkIcon aria-hidden weight="bold" size={20} />
         </span>
         <span className="flex min-w-0 flex-1 flex-col">
@@ -53,7 +53,7 @@ export function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-heading" className="px-3 pt-16 md:px-8 md:pt-20">
       {/* White focus rings: the default blue ring vanishes against this panel. */}
-      <Reveal className="relative mx-auto flex max-w-[71rem] flex-col gap-8 overflow-hidden rounded-[1.75rem] bg-blue p-7 text-white md:flex-row md:items-center md:gap-12 md:p-14 [&_:focus-visible]:outline-white">
+      <Reveal className="relative mx-auto flex max-w-[71rem] flex-col gap-8 hard overflow-hidden bg-blue p-7 text-white md:flex-row md:items-center md:gap-12 md:p-14 [&_:focus-visible]:outline-white">
         <span
           aria-hidden
           className="absolute -top-20 -right-16 grid size-44 place-items-center rounded-full bg-coral pt-14 pr-12 md:-top-28 md:-right-24 md:size-[18.75rem] md:pt-24 md:pr-20"
@@ -66,7 +66,7 @@ export function Contact() {
         />
 
         <div className="relative flex flex-1 flex-col gap-5">
-          <p className="inline-flex w-fit items-center gap-2 rounded-full bg-white/14 px-3 py-1.5 text-[0.8rem] font-medium">
+          <p className="inline-flex w-fit items-center gap-2 rounded-md border border-white/25 bg-white/14 px-3 py-1.5 font-mono text-[0.72rem] font-semibold">
             <span aria-hidden className="size-2 rounded-full bg-mint motion-safe:animate-blink" />
             {profile.availability}
           </p>

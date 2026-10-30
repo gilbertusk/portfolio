@@ -1,23 +1,32 @@
 @import 'tailwindcss';
 @import '@fontsource-variable/inter/opsz.css';
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource-variable/jetbrains-mono';
 
 @theme {
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Space Grotesk Variable', 'Inter Variable', ui-sans-serif, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 
   --color-bg: #f5f7fc;
   --color-card: #ffffff;
   --color-ink: #0b1b3f;
   --color-muted: #4d5b78;
   --color-line: #e1e6f2;
+  --color-grid: #e3e8f4;
   --color-blue: #2457f5;
   --color-blue-soft: #e6eeff;
   --color-navy: #0b1b3f;
-  --color-coral: #ff7a59;
-  --color-coral-soft: #ffe3da;
+  --color-coral: #ff6b2c;
+  --color-coral-soft: #ffe6d6;
   --color-sky: #a9d4ff;
   --color-lavender: #d9d6ff;
   --color-toolbar: #eef2fa;
   --color-mint: #7cf2b4;
+  --color-terminal: #0d1426;
+
+  --shadow-hard: 4px 4px 0 0 var(--color-ink);
+  --shadow-hard-sm: 2px 2px 0 0 var(--color-ink);
 
   --animate-ticker: ticker 38s linear infinite;
   --animate-spin-slow: spin 14s linear infinite;
@@ -30,11 +39,6 @@
   @keyframes blink {
     to { opacity: 0.3; }
   }
-}
-
-@keyframes wiggle {
-  from { transform: rotate(-6deg); }
-  to { transform: rotate(6deg); }
 }
 
 @layer base {
@@ -50,6 +54,15 @@
   body {
     @apply bg-bg font-sans text-ink antialiased;
     font-feature-settings: 'cv05', 'cv11';
+    /* A faint engineering-paper grid behind every section. */
+    background-image:
+      linear-gradient(to right, var(--color-grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
   }
 
   ::selection {
@@ -64,26 +77,46 @@
 }
 
 @layer components {
-  /* The card surface every bento tile shares. */
+  /* Hard-edged surface: ink border plus a solid offset shadow. */
+  .hard {
+    @apply rounded-[14px] border-[1.5px] border-ink shadow-hard;
+  }
+
   .bento-card {
-    @apply rounded-3xl border border-line bg-card;
+    @apply rounded-[14px] border-[1.5px] border-ink bg-card shadow-hard;
   }
 
   .lift {
-    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 320ms ease;
+    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms ease;
   }
 
   .lift:hover,
   .lift:focus-within {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 40px -16px rgb(11 27 63 / 0.18);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--color-ink);
+  }
+
+  /* Buttons and chips that press into their shadow. */
+  .press {
+    @apply border-[1.5px] border-ink shadow-hard-sm;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+
+  .press:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 0 var(--color-ink);
+  }
+
+  .press:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 0 var(--color-ink);
   }
 
   .ticker-track:hover { animation-play-state: paused; }
 
   @media (prefers-reduced-motion: reduce) {
-    .lift { transition: none; }
-    .lift:hover, .lift:focus-within { transform: none; }
+    .lift, .press { transition: none; }
+    .lift:hover, .lift:focus-within, .press:hover, .press:active { transform: none; }
     .motion-safe-only { animation: none !important; }
   }
 }

@@ -30,13 +30,13 @@ function ToolGroupCard({ group }: { group: ToolGroup }) {
   const isDark = group.id === 'ai'
 
   return (
-    <div className={cn('lift flex h-full flex-col gap-5 rounded-3xl p-6 md:p-7', style.card)}>
+    <div className={cn('hard lift flex h-full flex-col gap-5 p-6 md:p-7', style.card)}>
       <div className="flex items-center gap-3">
-        <span className={cn('grid size-11 shrink-0 place-items-center rounded-2xl', style.badge)}>
+        <span className={cn('grid size-11 shrink-0 place-items-center rounded-lg border-[1.5px] border-ink', style.badge)}>
           <GroupIcon aria-hidden weight="bold" size={21} />
         </span>
         <h3 className="flex-1 text-lg font-semibold">{group.title}</h3>
-        <span className={cn('rounded-full px-2.5 py-1 text-[0.8rem] font-medium', isDark ? 'bg-white/14' : 'bg-white/70')}>
+        <span className={cn('rounded-md px-2 py-0.5 font-mono text-[0.7rem] font-semibold', isDark ? 'bg-white/14' : 'bg-white/70')}>
           {group.tools.length} tools
         </span>
       </div>
@@ -45,7 +45,7 @@ function ToolGroupCard({ group }: { group: ToolGroup }) {
           <li
             key={name}
             className={cn(
-              'inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-[0.8rem] font-medium transition-transform motion-safe:hover:scale-105',
+              'inline-flex items-center gap-1.5 rounded-md border border-ink/15 px-2.5 py-1.5 font-mono text-[0.75rem] font-medium transition-transform motion-safe:hover:-translate-y-0.5',
               style.chip,
             )}
           >

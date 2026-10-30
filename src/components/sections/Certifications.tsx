@@ -10,9 +10,9 @@ const BADGE_TONES: Tone[] = ['blue', 'coral', 'sky', 'lavender']
 
 function CertificationBadge({ cert, tone }: { cert: Certification; tone: Tone }) {
   return (
-    <li className="lift flex flex-col overflow-hidden rounded-[1.1rem] border border-line bg-card">
+    <li className="hard lift flex flex-col overflow-hidden bg-card">
       <div className={cn('flex h-[4.5rem] items-center justify-between px-4', TONE[tone].bg, TONE[tone].fg)}>
-        <span aria-hidden className="grid size-10 place-items-center rounded-full bg-white/25">
+        <span aria-hidden className="grid size-10 place-items-center rounded-lg border-[1.5px] border-current/30 bg-white/25">
           <MedalIcon weight="bold" size={19} />
         </span>
         <span className="text-[0.8rem] font-semibold">{cert.date}</span>
@@ -50,7 +50,7 @@ export function Certifications() {
       <Reveal className="bento-card mx-auto flex max-w-[71rem] flex-col gap-6 p-6 md:p-7">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <span className="grid size-11 place-items-center rounded-2xl bg-blue-soft text-blue">
+            <span className="grid size-11 place-items-center rounded-lg border-[1.5px] border-ink bg-blue-soft text-blue">
               <CertificateIcon aria-hidden weight="bold" size={22} />
             </span>
             <div>
@@ -65,7 +65,7 @@ export function Certifications() {
             onClick={() => setIsExpanded((open) => !open)}
             aria-expanded={isExpanded}
             aria-controls="certification-list"
-            className="w-fit rounded-full border border-line px-4 py-2 text-sm font-semibold transition-colors hover:bg-bg"
+            className="press w-fit rounded-lg bg-card px-4 py-2 font-mono text-[0.8rem] font-bold"
           >
             {isExpanded ? 'Show fewer' : `Show all ${certifications.length} certifications`}
           </button>

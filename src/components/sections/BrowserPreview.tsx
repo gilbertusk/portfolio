@@ -37,8 +37,8 @@ interface BrowserPreviewProps {
 /** A browser window peeking up from a tinted stage. Images get a flow diagram fallback. */
 export function BrowserPreview({ tone, address, image }: BrowserPreviewProps) {
   return (
-    <div className={cn('flex h-56 items-end overflow-hidden rounded-2xl px-6 pt-6 md:h-[18.75rem] md:px-9 md:pt-7', TONE[tone].bg)}>
-      <div className="flex h-full w-full flex-col overflow-hidden rounded-t-[0.65rem] bg-white shadow-[0_1px_2px_rgb(11_27_63/0.12),0_8px_24px_-6px_rgb(11_27_63/0.22)] transition-transform duration-500 ease-out motion-safe:group-hover:-translate-y-1.5">
+    <div className={cn('flex h-56 items-end overflow-hidden rounded-[10px] border-[1.5px] border-ink px-6 pt-6 md:h-[18.75rem] md:px-9 md:pt-7', TONE[tone].bg)}>
+      <div className="flex h-full w-full flex-col overflow-hidden rounded-t-[0.5rem] border-[1.5px] border-b-0 border-ink bg-white transition-transform duration-500 ease-out motion-safe:group-hover:-translate-y-1.5">
         <div aria-hidden className="flex h-[1.875rem] shrink-0 items-center gap-2.5 bg-toolbar px-3">
           <span className="flex gap-1.5">
             <span className="size-2 rounded-full bg-coral" />

@@ -1,251 +1,212 @@
 import {
   ArrowDownIcon,
-  CloudIcon,
-  EyeIcon,
-  FlowArrowIcon,
+  ArrowRightIcon,
+  CameraIcon,
+  CaretDownIcon,
+  CheckIcon,
   GithubLogoIcon,
-  GraduationCapIcon,
-  HandWavingIcon,
-  HardDrivesIcon,
+  LightningIcon,
   LinkedinLogoIcon,
-  MapPinIcon,
-  PulseIcon,
-  TargetIcon,
   type Icon,
 } from '@phosphor-icons/react'
 import { m } from 'motion/react'
-import profilePhoto from '../../assets/profile.webp'
-import { timeline } from '../../data/about'
 import { intro, profile } from '../../data/profile'
-import { focusAreas, highlightStats, type Tone } from '../../data/showcase'
+import { headline, highlightStats, pipelineSteps, terminalLines } from '../../data/showcase'
 import { cn } from '../../lib/cn'
 import { EASE_OUT } from '../../lib/motion'
-import { TONE } from '../../lib/tone'
-import { Reveal } from '../ui/Reveal'
 
-const FOCUS_ICONS: Record<(typeof focusAreas)[number]['icon'], Icon> = {
-  eye: EyeIcon,
-  flow: FlowArrowIcon,
-  server: HardDrivesIcon,
+const CHIP_ICONS: Record<'camera' | 'lightning' | 'arrow', Icon> = {
+  camera: CameraIcon,
+  lightning: LightningIcon,
+  arrow: ArrowDownIcon,
 }
 
-const FOCUS_TONES = ['bg-blue-soft text-blue', 'bg-coral-soft text-coral', 'bg-lavender text-ink'] as const
+const CHIP_STYLE: Record<'coral' | 'blue' | 'navy', string> = {
+  coral: 'bg-coral-soft text-coral',
+  blue: 'bg-blue-soft text-blue',
+  navy: 'bg-navy text-white',
+}
+
+const TERMINAL_TONE: Record<(typeof terminalLines)[number]['tone'], string> = {
+  prompt: 'text-white/70',
+  info: 'text-sky',
+  pose: 'text-[#c4b5fd]',
+  model: 'text-[#ffb08a]',
+  ok: 'text-mint',
+}
+
+const enter = (delay: number) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, delay, ease: EASE_OUT },
+})
 
 const SOCIALS = [
   { label: 'GitHub', href: profile.links.github, icon: GithubLogoIcon },
   { label: 'LinkedIn', href: profile.links.linkedin, icon: LinkedinLogoIcon },
 ]
 
-const enter = (delay: number) => ({
-  initial: { opacity: 0, y: 18 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, delay, ease: EASE_OUT },
-})
-
-/** The last name gets a hand-drawn coral underline that draws itself in. */
-function Name() {
-  const [first, ...rest] = profile.name.split(' ')
+function Headline() {
+  const sentence = headline.parts.map(({ text }) => text).join(' ')
   return (
-    <h1 className="text-[clamp(3.1rem,8vw,5.25rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
-      {first}{' '}
-      <span className="relative inline-block whitespace-nowrap">
-        {rest.join(' ')}
-        <svg
-          aria-hidden
-          viewBox="0 0 300 20"
-          preserveAspectRatio="none"
-          className="absolute -bottom-2 left-0 h-3 w-full text-coral md:-bottom-3 md:h-4"
-        >
-          <m.path
-            d="M4 14 C 60 4, 120 4, 170 10 S 260 16, 296 6"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="6"
-            strokeLinecap="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 0.9, delay: 0.45, ease: EASE_OUT }}
-          />
-        </svg>
-      </span>
+    <h1
+      aria-label={sentence}
+      className="flex flex-wrap items-center gap-x-3 gap-y-2.5 text-[clamp(2.4rem,5.4vw,4.1rem)] leading-[1.1] font-bold tracking-[-0.035em]"
+    >
+      {headline.parts.map(({ text, chip }) => {
+        if (!chip) return <span key={text}>{text}</span>
+        const ChipIcon = CHIP_ICONS[chip.icon]
+        return (
+          <span
+            key={text}
+            aria-hidden
+            className={cn(
+              'inline-flex items-center gap-1.5 rounded-lg border-[1.5px] border-ink px-2.5 py-1 font-mono text-[0.5em] font-bold tracking-[-0.03em] shadow-hard',
+              CHIP_STYLE[chip.tone],
+            )}
+          >
+            <ChipIcon aria-hidden weight="bold" className="size-[0.85em]" />
+            {text}
+          </span>
+        )
+      })}
     </h1>
   )
 }
 
-function HelloCard() {
+function StatBox({ value, label, color }: { value: string; label: string; color: string }) {
   return (
-    <div className="bento-card relative flex flex-col justify-between gap-10 overflow-hidden p-6 md:p-10 lg:col-span-2 lg:row-span-2">
-      {/* Dotted texture fading out from the top-right corner. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 right-0 w-2/3 bg-[radial-gradient(circle,#d3dcf0_1.3px,transparent_1.4px)] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)] bg-[size:20px_20px]"
-      />
-      <m.div className="relative flex flex-col gap-6" {...enter(0)}>
-        <p className="inline-flex w-fit items-center gap-2 rounded-full bg-bg px-3 py-1.5 text-[0.8rem] font-medium">
-          <span aria-hidden className="size-2 rounded-full bg-[#22a55b] motion-safe:animate-blink" />
-          {profile.availability}
-        </p>
-        <div className="flex flex-col gap-3">
-          <p className="flex items-center gap-3 text-2xl font-semibold tracking-[-0.02em] text-muted md:text-[1.9rem]">
-            {intro.greeting}
-            <span
-              aria-hidden
-              className="inline-grid h-9 w-14 origin-bottom place-items-center rounded-full bg-coral text-white motion-safe:animate-[wiggle_1.2s_ease-in-out_infinite_alternate] md:h-11 md:w-16"
-            >
-              <HandWavingIcon weight="fill" className="size-5 md:size-6" />
-            </span>
-          </p>
-          <Name />
-        </div>
-        <p className="max-w-xl pt-2 text-[1.35rem] leading-snug font-medium tracking-[-0.015em] text-balance md:text-[1.6rem]">
-          {intro.tagline}
-        </p>
-        <p className="max-w-xl text-[1.05rem] leading-relaxed text-pretty text-muted">{intro.summary}</p>
-      </m.div>
-
-      <m.div className="relative flex flex-wrap items-center gap-2.5" {...enter(0.15)}>
-        <a
-          href="#work"
-          className="inline-flex items-center gap-2 rounded-full bg-blue px-5 py-3 font-semibold text-white transition-transform motion-safe:hover:-translate-y-0.5"
-        >
-          <ArrowDownIcon aria-hidden weight="bold" size={17} />
-          See my work
-        </a>
-        <a
-          href="#contact"
-          className="inline-flex items-center rounded-full border border-line bg-card px-5 py-3 font-semibold transition-transform motion-safe:hover:-translate-y-0.5"
-        >
-          Get in touch
-        </a>
-        {SOCIALS.map(({ label, href, icon: SocialIcon }) => (
-          <a
-            key={label}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${label} (opens in a new tab)`}
-            className="grid size-12 place-items-center rounded-full border border-line bg-card transition-transform motion-safe:hover:-translate-y-0.5"
-          >
-            <SocialIcon aria-hidden weight="bold" size={19} />
-          </a>
-        ))}
-      </m.div>
+    <div className="bento-card flex flex-col gap-1 p-3.5">
+      <span className={cn('font-display text-[1.7rem] leading-none font-bold tracking-[-0.03em] tabular-nums', color)}>
+        {value}
+      </span>
+      <span className="font-mono text-[0.68rem] leading-snug text-muted">{label}</span>
     </div>
   )
 }
 
-function PhotoCard() {
+function PipelineCard() {
   return (
-    <m.figure
-      className="relative h-[23rem] overflow-hidden rounded-3xl bg-sky lg:h-auto lg:min-h-[21rem]"
-      {...enter(0.1)}
-    >
-      <img
-        src={profilePhoto}
-        alt={intro.photoAlt}
-        width={853}
-        height={893}
-        fetchPriority="high"
-        className="absolute inset-0 size-full object-cover object-[50%_18%]"
-      />
-      <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy/45 to-transparent" />
-      <a
-        href="#contact"
-        className="absolute top-4 left-4 inline-flex -rotate-6 items-center gap-1.5 rounded-full bg-coral px-3.5 py-2 text-sm font-semibold text-white shadow-lg transition-transform motion-safe:hover:rotate-0"
-      >
-        <HandWavingIcon aria-hidden weight="fill" size={16} />
-        Say hello
-      </a>
-      <figcaption className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-2 text-[0.8rem] font-semibold backdrop-blur">
-        <MapPinIcon aria-hidden weight="fill" size={15} className="text-coral" />
-        {profile.location}
-      </figcaption>
-    </m.figure>
-  )
-}
-
-function StatCard({ value, label, tone, icon: StatIcon }: { value: string; label: string; tone: Tone; icon: Icon }) {
-  return (
-    <div className={cn('flex flex-col justify-between gap-5 rounded-3xl p-5', TONE[tone].bg, TONE[tone].fg)}>
-      <StatIcon aria-hidden weight="bold" size={20} />
-      <p className="flex flex-col gap-1.5">
-        <span className="text-[2.4rem] leading-none font-semibold tracking-[-0.04em] tabular-nums">{value}</span>
-        <span className="text-[0.8rem] leading-snug opacity-85">{label}</span>
-      </p>
-    </div>
-  )
-}
-
-function FocusCard() {
-  return (
-    <div className="bento-card flex flex-col gap-5 p-6 md:p-7 lg:col-span-2">
-      <h2 className="text-sm font-medium text-muted">What I work on</h2>
-      <ul className="grid gap-5 sm:grid-cols-3">
-        {focusAreas.map(({ icon, title, detail }, index) => {
-          const FocusIcon = FOCUS_ICONS[icon]
+    <div className="bento-card p-5">
+      <div className="flex items-center justify-between gap-3">
+        <h2 className="flex items-center gap-2 font-mono text-[0.75rem] font-bold tracking-[0.06em] uppercase">
+          <span aria-hidden className="size-2 rounded-full bg-blue" />
+          Production AI pipeline
+        </h2>
+        <span className="rounded-md border border-[#16a34a]/40 bg-[#dcfce7] px-2 py-0.5 font-mono text-[0.68rem] font-semibold text-[#15803d]">
+          Active engine
+        </span>
+      </div>
+      <ol aria-label="Pipeline steps" className="mt-4 flex flex-col gap-2.5">
+        {pipelineSteps.map(({ title, detail }, index) => {
+          const isActive = index === 1
+          const isLast = index === pipelineSteps.length - 1
           return (
-            <li key={title} className="flex gap-3.5 sm:flex-col sm:gap-3">
-              <span className={cn('grid size-11 shrink-0 place-items-center rounded-2xl', FOCUS_TONES[index])}>
-                <FocusIcon aria-hidden weight="bold" size={20} />
+            <li
+              key={title}
+              className={cn(
+                'flex items-center gap-3 rounded-lg border p-3',
+                isActive ? 'border-blue/50 bg-blue-soft' : 'border-line bg-card',
+              )}
+            >
+              <span
+                className={cn(
+                  'grid size-8 shrink-0 place-items-center rounded-md font-mono text-xs font-bold',
+                  isActive ? 'bg-blue text-white' : index === 0 ? 'bg-blue-soft text-blue' : 'bg-coral-soft text-coral',
+                )}
+              >
+                0{index + 1}
               </span>
-              <span className="flex flex-col gap-0.5">
-                <span className="font-semibold">{title}</span>
-                <span className="text-sm text-pretty text-muted">{detail}</span>
+              <span className="flex min-w-0 flex-1 flex-col">
+                <span className="font-mono text-[0.8rem] font-bold">{title}</span>
+                <span className="text-[0.75rem] text-muted">{detail}</span>
               </span>
+              {isLast ? (
+                <CheckIcon aria-hidden weight="bold" size={15} className="text-[#16a34a]" />
+              ) : (
+                <ArrowRightIcon aria-hidden weight="bold" size={14} className="text-muted" />
+              )}
             </li>
           )
         })}
-      </ul>
+      </ol>
     </div>
   )
 }
 
-function EducationCard() {
-  const [university, bangkit] = timeline
-  const entries = [
-    { icon: GraduationCapIcon, period: university.period, title: 'Informatics Engineering', detail: university.org },
-    { icon: CloudIcon, period: bangkit.period, title: bangkit.org, detail: 'Cloud computing cohort' },
-  ]
-
+function TerminalCard() {
   return (
-    <div className="bento-card flex flex-col gap-5 p-6 md:p-7">
-      <h2 className="text-sm font-medium text-muted">Education</h2>
-      <ul className="flex flex-col gap-4">
-        {entries.map(({ icon: EntryIcon, period, title, detail }) => (
-          <li key={title} className="flex gap-3.5">
-            <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-bg">
-              <EntryIcon aria-hidden weight="bold" size={20} />
-            </span>
-            <span className="flex flex-col gap-0.5">
-              <span className="text-[0.8rem] font-medium text-muted">{period}</span>
-              <span className="font-semibold">{title}</span>
-              <span className="text-sm text-muted">{detail}</span>
-            </span>
-          </li>
+    <figure
+      aria-label="Rep Counter terminal output"
+      className="overflow-hidden rounded-[14px] border-[1.5px] border-ink bg-terminal font-mono text-[0.75rem] shadow-hard"
+    >
+      <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
+        <span className="flex items-center gap-3">
+          <span aria-hidden className="flex gap-1.5">
+            <span className="size-2.5 rounded-full bg-[#ff5f57]" />
+            <span className="size-2.5 rounded-full bg-[#febc2e]" />
+            <span className="size-2.5 rounded-full bg-[#28c840]" />
+          </span>
+          <span className="text-white/70">rep_counter.py</span>
+        </span>
+        <span className="text-[0.68rem] font-semibold text-mint">LIVE // in-browser</span>
+      </div>
+      <div className="flex flex-col gap-1.5 px-4 py-4 leading-relaxed">
+        {terminalLines.map(({ tone, text }) => (
+          <p key={text} className={TERMINAL_TONE[tone]}>
+            {text}
+          </p>
         ))}
-      </ul>
-    </div>
+        <span aria-hidden className="h-3.5 w-2 bg-white/80 motion-safe:animate-blink" />
+      </div>
+    </figure>
   )
 }
 
 export function Intro() {
-  const [f1, reps] = highlightStats
-
   return (
-    <section id="home" aria-label="Introduction" className="px-3 pt-6 md:px-8 md:pt-10">
-      <div className="mx-auto flex max-w-[71rem] flex-col gap-4">
-        <div className="grid gap-4 lg:grid-cols-3">
-          <HelloCard />
-          <PhotoCard />
-          <m.div className="grid grid-cols-2 gap-4" {...enter(0.2)}>
-            <StatCard value={f1.value} label={f1.label} tone={f1.tone} icon={TargetIcon} />
-            <StatCard value={reps.value} label={reps.label} tone={reps.tone} icon={PulseIcon} />
-          </m.div>
-        </div>
-        <Reveal className="grid gap-4 lg:grid-cols-3">
-          <FocusCard />
-          <EducationCard />
-        </Reveal>
+    <section id="home" aria-label="Introduction" className="px-3 pt-8 md:px-8 md:pt-14">
+      <div className="mx-auto grid max-w-[71rem] items-start gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-10">
+        <m.div className="flex flex-col gap-6" {...enter(0)}>
+          <p className="inline-flex w-fit items-center gap-2 rounded-md border-[1.5px] border-ink bg-card px-3 py-1.5 font-mono text-[0.72rem] font-semibold shadow-hard-sm">
+            <span aria-hidden className="size-2 rounded-full bg-coral" />
+            {intro.label}
+          </p>
+          <Headline />
+          <p className="max-w-xl text-[1.05rem] leading-relaxed text-pretty text-muted">{intro.summary}</p>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="#work"
+              className="press inline-flex items-center gap-2 rounded-lg bg-blue px-5 py-3 font-mono text-sm font-bold text-white"
+            >
+              See my work
+              <CaretDownIcon aria-hidden weight="bold" size={15} />
+            </a>
+            {SOCIALS.map(({ label, href, icon: SocialIcon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${label} (opens in a new tab)`}
+                className="press inline-flex items-center gap-2 rounded-lg bg-card px-4 py-3 font-mono text-sm font-bold"
+              >
+                <SocialIcon aria-hidden weight="bold" size={16} />
+                {label}
+              </a>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 gap-3 pt-2 sm:grid-cols-4">
+            {highlightStats.map((stat) => (
+              <StatBox key={stat.value} {...stat} />
+            ))}
+          </div>
+        </m.div>
+
+        <m.div className="flex flex-col gap-5 lg:pt-4" {...enter(0.15)}>
+          <PipelineCard />
+          <TerminalCard />
+        </m.div>
       </div>
     </section>
   )

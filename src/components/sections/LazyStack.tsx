@@ -9,13 +9,13 @@ const Stack = lazy(() => import('./Stack'))
 // Heights approximate the loaded grid at each breakpoint so the swap doesn't shove the page.
 const loading = (
   <ToolkitShell>
-    <div aria-hidden className="min-h-[60rem] rounded-3xl bg-blue-soft/50 lg:min-h-[28rem]" />
+    <div aria-hidden className="min-h-[60rem] rounded-[14px] bg-blue-soft/50 lg:min-h-[28rem]" />
   </ToolkitShell>
 )
 
 const failed = (
   <ToolkitShell>
-    <p className="rounded-3xl bg-card p-6 text-muted">This section didn’t load. Refresh the page to try again.</p>
+    <p className="bento-card p-6 text-muted">This section didn’t load. Refresh the page to try again.</p>
   </ToolkitShell>
 )
 

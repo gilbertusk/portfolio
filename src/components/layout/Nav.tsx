@@ -1,4 +1,4 @@
-import { EnvelopeSimpleIcon, ListIcon, XIcon } from '@phosphor-icons/react'
+import { ArrowRightIcon, GithubLogoIcon, ListIcon, XIcon } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
 import { navItems, profile } from '../../data/profile'
 
@@ -24,15 +24,26 @@ export function Nav() {
     // z-40: the only sticky layer on the page; the skip link sits above it at z-50.
     <header className="sticky top-0 z-40 px-3 pt-3 md:px-8 md:pt-4">
       <nav aria-label="Main" className="mx-auto max-w-[71rem]">
-        <div className="flex items-center justify-between rounded-full border border-line bg-white/85 py-2 pr-2 pl-2.5 backdrop-blur-md">
-          <a href="#home" className="flex items-center gap-2.5 rounded-full">
+        <div className="flex items-center justify-between rounded-xl border-[1.5px] border-ink bg-white/95 py-2 pr-2 pl-2 shadow-hard backdrop-blur-md">
+          <a href="#home" className="flex items-center gap-2.5 rounded-lg">
             <span
               aria-hidden
-              className="grid size-9 place-items-center rounded-full bg-blue text-sm font-semibold text-white"
+              className="grid size-10 place-items-center rounded-lg border-[1.5px] border-ink bg-blue font-display text-sm font-bold text-white"
             >
               {profile.initials}
             </span>
-            <span className="font-semibold tracking-tight">{profile.name}</span>
+            <span className="flex flex-col">
+              <span className="flex items-center gap-2">
+                <span className="font-display font-bold tracking-tight">{profile.name}</span>
+                <span className="hidden rounded border border-blue/30 bg-blue-soft px-1.5 py-0.5 font-mono text-[0.65rem] font-semibold text-blue sm:inline">
+                  AI / CV Eng
+                </span>
+              </span>
+              <span className="hidden items-center gap-1.5 font-mono text-[0.68rem] text-muted sm:flex">
+                <span aria-hidden className="size-1.5 rounded-full bg-[#22a55b] motion-safe:animate-blink" />
+                Available for freelance & roles
+              </span>
+            </span>
           </a>
 
           <ul className="hidden items-center gap-7 md:flex">
@@ -40,20 +51,29 @@ export function Nav() {
               .filter(({ href }) => href !== '#contact')
               .map(({ label, href }) => (
                 <li key={href}>
-                  <a href={href} className="text-sm font-medium text-muted transition-colors hover:text-ink">
+                  <a href={href} className="font-mono text-[0.8rem] font-medium text-muted transition-colors hover:text-blue">
                     {label}
                   </a>
                 </li>
               ))}
           </ul>
 
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-2">
+            <a
+              href={profile.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub (opens in a new tab)"
+              className="press hidden size-10 place-items-center rounded-lg bg-card sm:grid"
+            >
+              <GithubLogoIcon aria-hidden weight="bold" size={18} />
+            </a>
             <a
               href="#contact"
-              className="hidden items-center gap-2 rounded-full bg-blue px-4 py-2.5 text-sm font-semibold text-white transition-transform motion-safe:hover:-translate-y-0.5 active:translate-y-0 sm:inline-flex"
+              className="press hidden items-center gap-1.5 rounded-lg bg-blue px-4 py-2.5 font-mono text-[0.8rem] font-bold text-white sm:inline-flex"
             >
-              <EnvelopeSimpleIcon aria-hidden weight="bold" size={16} />
               Get in touch
+              <ArrowRightIcon aria-hidden weight="bold" size={14} />
             </a>
             <button
               ref={menuToggleRef}
@@ -62,7 +82,7 @@ export function Nav() {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-              className="grid size-10 place-items-center rounded-full text-ink hover:bg-bg md:hidden"
+              className="press grid size-10 place-items-center rounded-lg bg-card text-ink md:hidden"
             >
               {isMenuOpen ? <XIcon aria-hidden size={20} /> : <ListIcon aria-hidden size={20} />}
             </button>
@@ -70,14 +90,14 @@ export function Nav() {
         </div>
 
         {isMenuOpen && (
-          <div id="mobile-menu" className="mt-2 rounded-3xl border border-line bg-white p-2 shadow-lg md:hidden">
+          <div id="mobile-menu" className="bento-card mt-2 p-2 md:hidden">
             <ul>
               {navItems.map(({ label, href }) => (
                 <li key={href}>
                   <a
                     href={href}
                     onClick={closeMenu}
-                    className="block rounded-2xl px-4 py-3 font-medium hover:bg-bg"
+                    className="block rounded-lg px-4 py-3 font-mono text-sm font-semibold hover:bg-blue-soft"
                   >
                     {label}
                   </a>

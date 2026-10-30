@@ -1,4 +1,3 @@
-import { WrenchIcon } from '@phosphor-icons/react'
 import type { ReactNode } from 'react'
 import { SectionTitle } from '../ui/SectionTitle'
 
@@ -15,7 +14,7 @@ export function ToolkitShell({ children, blurb = 'From the model to the tests ar
   return (
     <section id="toolkit" aria-labelledby="toolkit-heading" className="px-3 pt-16 md:px-8 md:pt-20">
       <div className="mx-auto flex max-w-[71rem] flex-col gap-7">
-        <SectionTitle id="toolkit-heading" before="Tools I" after="reach for" icon={WrenchIcon} tone="coral" blurb={blurb} />
+        <SectionTitle id="toolkit-heading" label="Stack & specs" before="Tools I" highlight="reach for" blurb={blurb} />
         {children}
       </div>
     </section>

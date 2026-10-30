@@ -32,10 +32,10 @@ function AlsoBuiltTile({ entry }: { entry: AlsoBuiltEntry }) {
     <li className="bento-card lift flex flex-col justify-between gap-5 p-6">
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
-          <span className={cn('grid size-12 place-items-center rounded-2xl', TONE[entry.tone].bg, TONE[entry.tone].fg)}>
+          <span className={cn('grid size-12 place-items-center rounded-lg border-[1.5px] border-ink', TONE[entry.tone].bg, TONE[entry.tone].fg)}>
             <TileIcon aria-hidden weight="bold" size={22} />
           </span>
-          <span className="rounded-full bg-bg px-2.5 py-1 text-[0.8rem] font-medium text-muted">{tag}</span>
+          <span className="rounded-md border border-line bg-bg px-2 py-0.5 font-mono text-[0.7rem] font-semibold text-muted">{tag}</span>
         </div>
         <h3 className="text-lg font-semibold">{project.title}</h3>
         <p className="text-sm text-pretty text-muted">{entry.blurb}</p>
@@ -61,9 +61,9 @@ function AlsoBuiltTile({ entry }: { entry: AlsoBuiltEntry }) {
 export function AlsoBuilt() {
   return (
     <ul aria-label="Also built" className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <li className="flex flex-col justify-between gap-6 rounded-3xl bg-navy p-7 text-white">
+      <li className="flex flex-col justify-between gap-6 hard bg-navy p-7 text-white">
         <div className="flex flex-col gap-3.5">
-          <span aria-hidden className="grid h-8.5 w-14 place-items-center rounded-full bg-coral">
+          <span aria-hidden className="grid h-8.5 w-14 place-items-center rounded-lg border-[1.5px] border-white/30 bg-coral">
             <StackIcon weight="bold" size={18} />
           </span>
           <p className="text-sm font-medium text-white/60">Also built</p>

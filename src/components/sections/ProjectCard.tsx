@@ -22,7 +22,7 @@ export function ProjectCard({ project, entry }: ProjectCardProps) {
           <p className="text-pretty text-muted md:line-clamp-2">{entry.blurb}</p>
           <ul aria-label={`${project.title} highlights`} className="flex flex-wrap gap-1.5 pt-1">
             {entry.pills.map((pill) => (
-              <li key={pill} className="rounded-full bg-blue-soft px-2.5 py-1.5 text-[0.8rem] font-medium text-blue">
+              <li key={pill} className="rounded-md border border-blue/30 bg-blue-soft px-2 py-1 font-mono text-[0.72rem] font-semibold text-blue">
                 {pill}
               </li>
             ))}

@@ -82,16 +82,46 @@ export const alsoBuilt: AlsoBuiltEntry[] = [
   { id: 'healthbot', icon: 'heartbeat', tone: 'coral-soft', blurb: 'Health chatbot with workout scheduling and diet recommendations.' },
 ]
 
-export const focusAreas = [
-  { icon: 'eye', title: 'Computer vision', detail: 'Pose estimation, image classification, OCR' },
-  { icon: 'flow', title: 'LLM automation', detail: 'n8n, Make, Zapier, Claude and Gemini APIs' },
-  { icon: 'server', title: 'Backend & testing', detail: 'Node.js, Python, PostgreSQL, Playwright' },
+/** Headline words that render as chips: "I turn [raw data] into [models] that [ship.]". */
+export const headline = {
+  parts: [
+    { text: 'I turn', chip: null },
+    { text: 'raw data', chip: { icon: 'camera', tone: 'coral' } },
+    { text: 'into', chip: null },
+    { text: 'models', chip: { icon: 'lightning', tone: 'blue' } },
+    { text: 'that', chip: null },
+    { text: 'ship.', chip: { icon: 'arrow', tone: 'navy' } },
+  ],
+} as const
+
+/** Every number here comes from a project's own evaluation (see projects.ts). */
+export const highlightStats = [
+  { value: '0.939', label: 'macro-F1, Pilah classifier', color: 'text-blue' },
+  { value: '22', label: 'exercises Rep Counter tracks', color: 'text-coral' },
+  { value: '4.2 MB', label: 'int8 ONNX model on device', color: 'text-[#16a34a]' },
+  { value: '0', label: 'webcam frames sent to a server', color: 'text-[#7c3aed]' },
 ] as const
 
-export const highlightStats = [
-  { value: '0.939', label: 'macro-F1, Pilah waste classifier', tone: 'navy' },
-  { value: '22', label: 'exercises tracked by Rep Counter', tone: 'coral' },
+export const pipelineSteps = [
+  { title: 'Data & labeling', detail: 'Collect, clean, and label images and pose keypoints' },
+  { title: 'Model training & export', detail: 'PyTorch training, int8 quantization, ONNX export' },
+  { title: 'Workflow & serving', detail: 'ONNX Runtime Web, REST APIs, n8n automations' },
 ] as const
+
+/** Decorative terminal; each line restates a real Rep Counter fact, no invented metrics. */
+export const terminalLines = [
+  { tone: 'prompt', text: '$ python -m rep_counter --backend=onnx_web' },
+  { tone: 'info', text: '[INFO] ONNX Runtime Web ready, inference runs in the browser' },
+  { tone: 'pose', text: '[POSE] 33 MediaPipe landmarks per frame' },
+  { tone: 'model', text: '[MODEL] 1D-CNN · 22 exercises · macro-F1 0.822' },
+  { tone: 'ok', text: '● 0 frames uploaded, video never leaves the device' },
+] as const
+
+export const specialization = {
+  label: 'Specialization focus',
+  title: 'Computer Vision & Automation',
+  detail: 'MediaPipe, quantization, n8n, REST APIs & Docker',
+} as const
 
 export const skillTicker = [
   'Computer vision',
@@ -99,9 +129,10 @@ export const skillTicker = [
   'n8n workflows',
   'PyTorch',
   'ONNX Runtime',
+  'MediaPipe pose estimation',
+  'MobileNetV3 edge classifier',
   'OCR pipelines',
   'REST APIs',
-  'End-to-end testing',
 ]
 
 export const aboutFacts = ['Semarang, Indonesia', 'Informatics @ UNNES', 'Bangkit Academy 2023'] as const

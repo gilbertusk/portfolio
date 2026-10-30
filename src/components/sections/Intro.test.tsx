@@ -1,36 +1,40 @@
 import { render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import { highlightStats } from '../../data/showcase'
+import { highlightStats, pipelineSteps, terminalLines } from '../../data/showcase'
 import { Intro } from './Intro'
 
 describe('Intro', () => {
-  it('introduces Gilbertus by name as the page heading', () => {
+  it('reads the chip headline as one sentence and names Gilbertus up front', () => {
     render(<Intro />)
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveAccessibleName('Gilbertus Kristo')
-    expect(screen.getByText('Hi, I’m')).toBeInTheDocument()
-    expect(screen.getByText(/computer vision and LLM automation/)).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveAccessibleName('I turn raw data into models that ship.')
+    expect(screen.getByText(/Gilbertus Kristo \/\/ AI Engineer based in Semarang/)).toBeInTheDocument()
   })
 
-  it('shows a portrait with location and an invitation to say hello', () => {
+  it('shows only real, sourced highlight numbers', () => {
     render(<Intro />)
 
-    const portrait = screen.getByRole('img', { name: /portrait of gilbertus kristo/i })
-    expect(portrait).toHaveAttribute('fetchpriority', 'high')
-    const figure = portrait.closest('figure') as HTMLElement
-    expect(within(figure).getByText('Semarang, Indonesia')).toBeInTheDocument()
-    expect(within(figure).getByRole('link', { name: /say hello/i })).toHaveAttribute('href', '#contact')
-  })
-
-  it('shows availability, highlight numbers, and both education entries', () => {
-    render(<Intro />)
-
-    expect(screen.getByText(/open to internships/i)).toBeInTheDocument()
-    for (const { value } of highlightStats) {
+    for (const { value, label } of highlightStats) {
       expect(screen.getByText(value)).toBeInTheDocument()
+      expect(screen.getByText(label)).toBeInTheDocument()
     }
-    expect(screen.getByText('Universitas Negeri Semarang')).toBeInTheDocument()
-    expect(screen.getByText('Bangkit Academy')).toBeInTheDocument()
+  })
+
+  it('walks through the three pipeline steps in order', () => {
+    render(<Intro />)
+
+    const steps = within(screen.getByRole('list', { name: 'Pipeline steps' })).getAllByRole('listitem')
+    expect(steps).toHaveLength(pipelineSteps.length)
+    steps.forEach((step, index) => expect(step).toHaveTextContent(pipelineSteps[index].title))
+  })
+
+  it('prints every terminal line', () => {
+    render(<Intro />)
+
+    const terminal = screen.getByRole('figure', { name: 'Rep Counter terminal output' })
+    for (const { text } of terminalLines) {
+      expect(within(terminal).getByText(text)).toBeInTheDocument()
+    }
   })
 
   it('opens social profiles safely in a new tab', () => {
