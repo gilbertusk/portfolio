@@ -4,6 +4,7 @@ import {
   CameraIcon,
   CaretDownIcon,
   CheckIcon,
+  DownloadSimpleIcon,
   GithubLogoIcon,
   LightningIcon,
   LinkedinLogoIcon,
@@ -181,6 +182,14 @@ export function Intro() {
             >
               See my work
               <CaretDownIcon aria-hidden weight="bold" size={15} />
+            </a>
+            <a
+              href={profile.cv.href}
+              download={profile.cv.fileName}
+              className="press inline-flex items-center gap-2 rounded-lg bg-navy px-4 py-3 font-mono text-sm font-bold text-white"
+            >
+              <DownloadSimpleIcon aria-hidden weight="bold" size={16} />
+              Download CV
             </a>
             {SOCIALS.map(({ label, href, icon: SocialIcon }) => (
               <a

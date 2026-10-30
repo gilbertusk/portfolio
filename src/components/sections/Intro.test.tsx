@@ -1,5 +1,6 @@
 import { render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+import { profile } from '../../data/profile'
 import { highlightStats, pipelineSteps, terminalLines } from '../../data/showcase'
 import { Intro } from './Intro'
 
@@ -35,6 +36,14 @@ describe('Intro', () => {
     for (const { text } of terminalLines) {
       expect(within(terminal).getByText(text)).toBeInTheDocument()
     }
+  })
+
+  it('offers the CV as a named download', () => {
+    render(<Intro />)
+
+    const cv = screen.getByRole('link', { name: 'Download CV' })
+    expect(cv).toHaveAttribute('href', profile.cv.href)
+    expect(cv).toHaveAttribute('download', profile.cv.fileName)
   })
 
   it('opens social profiles safely in a new tab', () => {

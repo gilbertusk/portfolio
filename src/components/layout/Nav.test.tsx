@@ -17,7 +17,7 @@ describe('Nav', () => {
     expect(toggle).toHaveAccessibleName('Close menu')
     const menu = document.getElementById('mobile-menu')
     expect(menu).not.toBeNull()
-    expect(within(menu as HTMLElement).getAllByRole('link')).toHaveLength(navItems.length)
+    expect(within(menu as HTMLElement).getAllByRole('link')).toHaveLength(navItems.length + 1)
   })
 
   it('closes the mobile menu after a link is chosen', () => {

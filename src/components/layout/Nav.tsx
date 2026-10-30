@@ -1,4 +1,4 @@
-import { ArrowRightIcon, GithubLogoIcon, ListIcon, XIcon } from '@phosphor-icons/react'
+import { ArrowRightIcon, DownloadSimpleIcon, GithubLogoIcon, ListIcon, XIcon } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
 import { navItems, profile } from '../../data/profile'
 
@@ -60,6 +60,14 @@ export function Nav() {
 
           <div className="flex items-center gap-2">
             <a
+              href={profile.cv.href}
+              download={profile.cv.fileName}
+              className="press hidden h-10 items-center gap-1.5 rounded-lg bg-card px-3 font-mono text-[0.8rem] font-bold lg:inline-flex"
+            >
+              <DownloadSimpleIcon aria-hidden weight="bold" size={15} />
+              CV
+            </a>
+            <a
               href={profile.links.github}
               target="_blank"
               rel="noopener noreferrer"
@@ -103,6 +111,17 @@ export function Nav() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href={profile.cv.href}
+                  download={profile.cv.fileName}
+                  onClick={closeMenu}
+                  className="flex items-center gap-2 rounded-lg px-4 py-3 font-mono text-sm font-semibold hover:bg-blue-soft"
+                >
+                  <DownloadSimpleIcon aria-hidden weight="bold" size={15} />
+                  Download CV
+                </a>
+              </li>
             </ul>
           </div>
         )}

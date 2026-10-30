@@ -9,6 +9,8 @@ export const profile = {
     github: 'https://github.com/gilbertusk',
     linkedin: 'https://www.linkedin.com/in/gilbertus-kristo-anugerah-adviandito-a81809240/',
   },
+  /** Served from public/; `fileName` is what the browser saves it as. */
+  cv: { href: '/cv-gilbertus-kristo.pdf', fileName: 'Gilbertus-Kristo-CV.pdf' },
 } as const
 
 export const navItems = [
