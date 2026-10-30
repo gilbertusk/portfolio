@@ -1,30 +1,36 @@
-import { allProjects } from '../../data/projects'
+import { SparkleIcon } from '@phosphor-icons/react'
+import { getProject } from '../../data/projects'
+import { featured } from '../../data/showcase'
 import { Reveal } from '../ui/Reveal'
-import { Section } from '../ui/Section'
+import { SectionTitle } from '../ui/SectionTitle'
+import { AlsoBuilt } from './AlsoBuilt'
 import { ProjectCard } from './ProjectCard'
 
 export function SelectedWork() {
   return (
-    <Section id="work" labelledBy="work-heading" className="work-pattern border-t border-ink">
-      <div className="mx-auto max-w-7xl">
-        <Reveal>
-          <div className="work-intro">
-            <div>
-              <p className="section-index">Selected work</p>
-              <h2 id="work-heading">A few things I have built.</h2>
-            </div>
-            <p>
-              Computer vision experiments, OCR automation, and backend systems built from the model to the workflow around it.
-            </p>
-          </div>
-        </Reveal>
-
-        <ol aria-label="Project carousel" className="project-carousel project-grid">
-          {allProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} number={index + 1} />
-          ))}
-        </ol>
+    <section id="work" aria-labelledby="work-heading" className="px-3 pb-6 md:px-8">
+      <div className="mx-auto flex max-w-[71rem] flex-col gap-7">
+        <SectionTitle
+          id="work-heading"
+          before="Selected"
+          after="work"
+          icon={SparkleIcon}
+          tone="coral"
+          blurb="Models trained, evaluated, and shipped, plus the backend systems that hold them up."
+        />
+        <div className="flex flex-col gap-4">
+          <ul aria-label="Selected projects" className="grid gap-4 md:grid-cols-2">
+            {featured.map((entry, index) => (
+              <Reveal as="li" key={entry.id} className="h-full" delay={(index % 2) * 0.08}>
+                <ProjectCard project={getProject(entry.id)} entry={entry} />
+              </Reveal>
+            ))}
+          </ul>
+          <Reveal>
+            <AlsoBuilt />
+          </Reveal>
+        </div>
       </div>
-    </Section>
+    </section>
   )
 }

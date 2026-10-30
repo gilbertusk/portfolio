@@ -1,120 +1,127 @@
-import { ArrowUpRightIcon } from '@phosphor-icons/react'
-import { useState } from 'react'
-import profileImage from '../../assets/profile.webp'
-import { VISIBLE_CERTIFICATIONS, bio, certifications, timeline, type Certification } from '../../data/about'
+import {
+  ArrowRightIcon,
+  AsteriskIcon,
+  CloudIcon,
+  GraduationCapIcon,
+  HandshakeIcon,
+  MapPinIcon,
+  QuotesIcon,
+  SmileyIcon,
+  UsersIcon,
+  type Icon,
+} from '@phosphor-icons/react'
+import { bio, timeline } from '../../data/about'
+import { profile } from '../../data/profile'
+import { aboutFacts, type Tone } from '../../data/showcase'
+import { cn } from '../../lib/cn'
+import { TONE } from '../../lib/tone'
 import { Reveal } from '../ui/Reveal'
-import { Section, SectionHeading } from '../ui/Section'
+import { SectionTitle } from '../ui/SectionTitle'
 
-function CertificationItem({ cert }: { cert: Certification }) {
+const FACT_STYLE: { icon: Icon; className: string }[] = [
+  { icon: MapPinIcon, className: 'bg-blue-soft [&>svg]:text-blue' },
+  { icon: GraduationCapIcon, className: 'bg-lavender' },
+  { icon: CloudIcon, className: 'bg-sky' },
+]
+
+const TIMELINE_STYLE: { icon: Icon; tone: Tone }[] = [
+  { icon: GraduationCapIcon, tone: 'blue' },
+  { icon: CloudIcon, tone: 'sky' },
+  { icon: UsersIcon, tone: 'coral' },
+  { icon: HandshakeIcon, tone: 'lavender' },
+]
+
+function BioCard() {
   return (
-    <li className="certification-tile flex min-h-28 flex-col justify-between border border-line bg-surface p-4 transition-colors hover:border-ink">
-      {cert.href ? (
+    <div className="bento-card relative flex flex-col gap-7 overflow-hidden p-6 md:p-9 lg:col-span-2">
+      <span
+        aria-hidden
+        className="absolute -top-10 -right-10 grid size-28 place-items-center rounded-full bg-blue-soft pt-5 pr-5 md:size-40 md:pt-8 md:pr-8"
+      >
+        <AsteriskIcon weight="bold" className="size-7 text-blue motion-safe:animate-spin-slow md:size-10" />
+      </span>
+      <div className="relative flex flex-col gap-4.5">
+        <span aria-hidden className="grid h-8 w-13 place-items-center rounded-full bg-coral text-white">
+          <QuotesIcon weight="fill" size={16} />
+        </span>
+        <h3 className="max-w-xl text-[1.9rem] leading-[1.1] font-semibold tracking-[-0.03em] text-balance md:text-[2.5rem]">
+          A backend developer who moved <span className="text-blue">closer to the model.</span>
+        </h3>
+        {bio.map((paragraph) => (
+          <p key={paragraph.slice(0, 24)} className="text-pretty text-muted">
+            {paragraph}
+          </p>
+        ))}
+      </div>
+      <div className="flex flex-col gap-4 border-t border-line pt-5 md:flex-row md:items-center md:justify-between">
+        <ul aria-label="Quick facts" className="flex flex-1 flex-wrap gap-2">
+          {aboutFacts.map((fact, index) => {
+            const { icon: FactIcon, className } = FACT_STYLE[index]
+            return (
+              <li
+                key={fact}
+                className={cn('inline-flex items-center gap-1 rounded-full py-1.5 pr-2.5 pl-2 text-xs font-medium', className)}
+              >
+                <FactIcon aria-hidden weight="bold" size={14} />
+                {fact}
+              </li>
+            )
+          })}
+        </ul>
         <a
-          href={cert.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${cert.title}: verify on ${cert.issuer} (opens in a new tab)`}
-          className="group/cert font-medium leading-snug hover:text-accent"
+          href={`mailto:${profile.email}`}
+          className="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-full bg-blue px-3.5 py-2 text-[0.95rem] font-semibold text-white transition-transform motion-safe:hover:-translate-y-0.5"
         >
-          {cert.title}
-          <ArrowUpRightIcon
-            aria-hidden
-            size={14}
-            className="ml-1 inline align-[-1px] text-subtle transition-transform group-hover/cert:-translate-y-px group-hover/cert:translate-x-px"
-          />
+          Email me
+          <ArrowRightIcon aria-hidden weight="bold" size={15} />
         </a>
-      ) : (
-        <p className="font-medium leading-snug">{cert.title}</p>
-      )}
-      <p className="mt-1 text-sm text-subtle">
-        {cert.issuer} · {cert.date}
-      </p>
-    </li>
+      </div>
+    </div>
   )
 }
 
-function AboutVisual() {
+function ExperienceCard() {
   return (
-    <figure
-      aria-label="AI build principles: measure, wire, and ship"
-      className="about-visual mt-10"
-    >
-      <img src={profileImage} alt="Gilbertus Kristo working on a project" width={853} height={893} loading="lazy" />
-      <figcaption className="about-visual-caption">
-        <span>Working principle</span>
-        <span className="font-mono">01 / 03</span>
-      </figcaption>
-      <div className="about-visual-stage" aria-hidden="true">
-        <p className="about-visual-statement">Make the useful thing, then make it hold.</p>
-        <ol className="about-principles">
-          <li><span>01</span><strong>Measure it</strong><small>evidence before opinion</small></li>
-          <li><span>02</span><strong>Wire it</strong><small>reliable beyond the demo</small></li>
-          <li><span>03</span><strong>Ship it</strong><small>useful in the real workflow</small></li>
-        </ol>
+    <div className="flex flex-col gap-5 rounded-3xl bg-navy p-7 text-white">
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-semibold">Experience</h3>
+        <span className="rounded-full bg-white/12 px-2.5 py-1 text-[0.8rem] font-medium">{timeline.length} roles</span>
       </div>
-      <p className="about-visual-footnote">A model is only useful when the surrounding system is dependable.</p>
-    </figure>
+      <ol aria-label="Experience timeline" className="flex flex-col gap-1">
+        {timeline.map((entry, index) => {
+          const { icon: EntryIcon, tone } = TIMELINE_STYLE[index % TIMELINE_STYLE.length]
+          const isLast = index === timeline.length - 1
+          return (
+            <li key={entry.role} className="flex gap-3.5">
+              <span className="flex flex-col items-center">
+                <span className={cn('grid size-9 shrink-0 place-items-center rounded-xl', TONE[tone].bg, TONE[tone].fg)}>
+                  <EntryIcon aria-hidden weight="bold" size={17} />
+                </span>
+                {!isLast && <span aria-hidden className="w-0.5 flex-1 bg-white/18" />}
+              </span>
+              <span className="flex flex-col gap-0.5 pb-4">
+                <span className="text-[0.8rem] font-medium text-white/55">{entry.period}</span>
+                <span className="font-semibold">{entry.role}</span>
+                <span className="text-sm text-white/70">{entry.org}</span>
+              </span>
+            </li>
+          )
+        })}
+      </ol>
+    </div>
   )
 }
 
 export function About() {
-  const [showAllCerts, setShowAllCerts] = useState(false)
-  const visibleCerts = showAllCerts ? certifications : certifications.slice(0, VISIBLE_CERTIFICATIONS)
-  const hiddenCount = certifications.length - VISIBLE_CERTIFICATIONS
-
   return (
-    <Section id="about" labelledBy="about-heading">
-      <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
-        <Reveal className="lg:col-span-5">
-          <SectionHeading id="about-heading" title="About" />
-          <div className="mt-5 space-y-4 text-lg leading-relaxed text-muted">
-            {bio.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-          <AboutVisual />
+    <section id="about" aria-labelledby="about-heading" className="px-3 pt-16 md:px-8 md:pt-20">
+      <div className="mx-auto flex max-w-[71rem] flex-col gap-7">
+        <SectionTitle id="about-heading" before="About" after="me" icon={SmileyIcon} tone="sky" />
+        <Reveal className="grid gap-4 lg:grid-cols-3">
+          <BioCard />
+          <ExperienceCard />
         </Reveal>
-
-        <div className="space-y-16 lg:col-span-7">
-          <Reveal>
-            <h3 className="text-lg font-medium tracking-tight">Experience and education</h3>
-            <ol aria-label="Experience timeline" className="experience-timeline mt-6 space-y-5">
-              {timeline.map((entry) => (
-                <li key={entry.role} className="experience-entry grid gap-1 sm:grid-cols-[9.5rem_1fr] sm:gap-6">
-                  <p className="experience-period pt-0.5 font-mono text-sm text-subtle">{entry.period}</p>
-                  <div>
-                    <p className="font-medium">
-                      {entry.role}
-                      <span className="text-muted">, {entry.org}</span>
-                    </p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted">{entry.detail}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-
-          <Reveal>
-            <h3 className="text-lg font-medium tracking-tight">Certifications</h3>
-            <ul id="certification-list" className="mt-6 grid gap-3 sm:grid-cols-2">
-              {visibleCerts.map((cert) => (
-                <CertificationItem key={cert.title} cert={cert} />
-              ))}
-            </ul>
-            {hiddenCount > 0 && (
-              <button
-                type="button"
-                onClick={() => setShowAllCerts((isShown) => !isShown)}
-                aria-expanded={showAllCerts}
-                aria-controls="certification-list"
-                className="mt-6 border border-ink bg-surface px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-surface-2 active:scale-[0.98]"
-              >
-                {showAllCerts ? 'Show fewer' : `Show all ${certifications.length} certifications`}
-              </button>
-            )}
-          </Reveal>
-        </div>
       </div>
-    </Section>
+    </section>
   )
 }

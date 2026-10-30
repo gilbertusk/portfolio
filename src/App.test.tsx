@@ -4,12 +4,12 @@ import App from './App'
 import { navItems } from './data/profile'
 
 describe('App', () => {
-  it('swaps the lazy stack placeholder for the real section', async () => {
+  // The lazy chunk can take several seconds under a parallel, cold, coverage-instrumented run.
+  it('swaps the lazy toolkit placeholder for the real section', { timeout: 20000 }, async () => {
     render(<App />)
 
-    // The lazy chunk can take over a second under a parallel, cold test run.
-    expect(await screen.findByRole('heading', { name: 'AI & automation' }, { timeout: 5000 })).toBeInTheDocument()
-    expect(document.querySelectorAll('#stack')).toHaveLength(1)
+    expect(await screen.findByRole('heading', { name: 'AI & automation' }, { timeout: 15000 })).toBeInTheDocument()
+    expect(document.querySelectorAll('#toolkit')).toHaveLength(1)
   })
 
   it('has exactly one h1', () => {

@@ -2,10 +2,12 @@ import { LazyMotion, MotionConfig, domAnimation } from 'motion/react'
 import { Footer } from './components/layout/Footer'
 import { Nav } from './components/layout/Nav'
 import { About } from './components/sections/About'
+import { Certifications } from './components/sections/Certifications'
 import { Contact } from './components/sections/Contact'
-import { Hero } from './components/sections/Hero'
+import { Intro } from './components/sections/Intro'
 import { LazyStack } from './components/sections/LazyStack'
 import { SelectedWork } from './components/sections/SelectedWork'
+import { Ticker } from './components/sections/Ticker'
 
 export default function App() {
   return (
@@ -15,16 +17,18 @@ export default function App() {
       <MotionConfig reducedMotion="user">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-canvas"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-white"
         >
           Skip to content
         </a>
         <Nav />
         <main id="main">
-          <Hero />
-          <About />
+          <Intro />
+          <Ticker />
           <SelectedWork />
+          <About />
           <LazyStack />
+          <Certifications />
           <Contact />
         </main>
         <Footer />

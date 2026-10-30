@@ -45,9 +45,9 @@ export function CopyEmailButton({ email }: CopyEmailButtonProps) {
       <button
         type="button"
         onClick={handleCopy}
-        className="inline-flex items-center gap-1.5 border border-ink bg-surface px-3.5 py-1.5 text-sm font-medium text-ink transition-colors hover:bg-surface-2 active:scale-[0.97]"
+        className="inline-flex items-center gap-1.5 rounded-full bg-white/14 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/24 active:scale-[0.97]"
       >
-        <StatusIcon aria-hidden size={15} className={status === 'copied' ? 'text-accent' : undefined} />
+        <StatusIcon aria-hidden weight="bold" size={15} className={status === 'copied' ? 'text-mint' : undefined} />
         {LABELS[status]}
       </button>
       <output className="sr-only">

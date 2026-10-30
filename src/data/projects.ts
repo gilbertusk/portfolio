@@ -219,3 +219,12 @@ export const allProjects: Project[] = [
   ...moreAiProjects,
   ...engineeringProjects,
 ]
+
+const projectsById = new Map(allProjects.map((project) => [project.id, project]))
+
+/** Looks up a project by id; throws so a typo in showcase.ts fails loudly instead of rendering nothing. */
+export function getProject(id: string): Project {
+  const project = projectsById.get(id)
+  if (!project) throw new Error(`Unknown project id: ${id}`)
+  return project
+}

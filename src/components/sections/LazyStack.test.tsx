@@ -16,8 +16,8 @@ describe('LazyStack', () => {
     render(<LazyStack />)
 
     expect(await screen.findByText(/This section didn’t load/)).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Tools I work with' })).toBeInTheDocument()
-    expect(document.getElementById('stack')).not.toBeNull()
+    expect(screen.getByRole('heading', { name: 'Tools I reach for' })).toBeInTheDocument()
+    expect(document.getElementById('toolkit')).not.toBeNull()
     consoleError.mockRestore()
   })
 })

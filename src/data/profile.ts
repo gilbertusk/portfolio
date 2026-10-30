@@ -1,6 +1,7 @@
 export const profile = {
   name: 'Gilbertus Kristo',
-  role: 'AI Engineer · Computer Vision & Automation',
+  initials: 'GK',
+  role: 'AI Engineer',
   email: 'gilbertuskristo@gmail.com',
   location: 'Semarang, Indonesia',
   availability: 'Open to internships and freelance automation work',
@@ -11,8 +12,18 @@ export const profile = {
 } as const
 
 export const navItems = [
-  { label: 'About', href: '#about' },
   { label: 'Work', href: '#work' },
-  { label: 'Stack', href: '#stack' },
+  { label: 'About', href: '#about' },
+  { label: 'Toolkit', href: '#toolkit' },
   { label: 'Contact', href: '#contact' },
 ] as const
+
+export const intro = {
+  summary:
+    'AI engineer in Semarang, Indonesia. I train computer vision models, wire LLMs into business workflows, and write the APIs and tests that keep them running.',
+} as const
+
+export const contactCopy = {
+  heading: 'Have a workflow that should run on its own? Let’s talk.',
+  body: 'Tell me about the process, the data, and what “done” looks like. I usually reply within a day.',
+} as const

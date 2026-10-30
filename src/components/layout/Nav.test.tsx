@@ -24,7 +24,7 @@ describe('Nav', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
 
     const menu = document.getElementById('mobile-menu') as HTMLElement
-    fireEvent.click(within(menu).getByRole('link', { name: 'Stack' }))
+    fireEvent.click(within(menu).getByRole('link', { name: 'Toolkit' }))
 
     expect(document.getElementById('mobile-menu')).toBeNull()
   })

@@ -1,7 +1,30 @@
 import { describe, expect, it } from 'vitest'
 import { certifications } from './about'
-import { allProjects } from './projects'
+import { allProjects, getProject } from './projects'
+import { alsoBuilt, featured } from './showcase'
 import { toolGroups } from './stack'
+
+describe('showcase data', () => {
+  it('points every featured and also-built entry at a real project', () => {
+    for (const { id } of [...featured, ...alsoBuilt]) {
+      expect(() => getProject(id)).not.toThrow()
+    }
+  })
+
+  it('shows each project in only one place', () => {
+    const ids = [...featured, ...alsoBuilt].map((entry) => entry.id)
+
+    expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('keeps the featured grid symmetric', () => {
+    expect(featured.length % 2).toBe(0)
+  })
+
+  it('throws on an unknown project id', () => {
+    expect(() => getProject('does-not-exist')).toThrow('Unknown project id')
+  })
+})
 
 describe('project data', () => {
   it('gives every project a unique id', () => {
