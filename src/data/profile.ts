@@ -13,6 +13,7 @@ export const profile = {
 
 export const navItems = [
   { label: 'Work', href: '#work' },
+  { label: 'Research', href: '#research' },
   { label: 'About', href: '#about' },
   { label: 'Toolkit', href: '#toolkit' },
   { label: 'Contact', href: '#contact' },

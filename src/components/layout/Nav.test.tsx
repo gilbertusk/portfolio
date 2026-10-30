@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+import { navItems } from '../../data/profile'
 import { Nav } from './Nav'
 
 describe('Nav', () => {
@@ -16,7 +17,7 @@ describe('Nav', () => {
     expect(toggle).toHaveAccessibleName('Close menu')
     const menu = document.getElementById('mobile-menu')
     expect(menu).not.toBeNull()
-    expect(within(menu as HTMLElement).getAllByRole('link')).toHaveLength(4)
+    expect(within(menu as HTMLElement).getAllByRole('link')).toHaveLength(navItems.length)
   })
 
   it('closes the mobile menu after a link is chosen', () => {

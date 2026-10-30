@@ -7,6 +7,7 @@ import { Contact } from './components/sections/Contact'
 import { Credentials } from './components/sections/Credentials'
 import { Intro } from './components/sections/Intro'
 import { LazyStack } from './components/sections/LazyStack'
+import { Publications } from './components/sections/Publications'
 import { SelectedWork } from './components/sections/SelectedWork'
 import { Ticker } from './components/sections/Ticker'
 
@@ -28,6 +29,7 @@ export default function App() {
           <Ticker />
           <Credentials />
           <SelectedWork />
+          <Publications />
           <About />
           <LazyStack />
           <Certifications />
