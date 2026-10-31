@@ -88,6 +88,7 @@ export function SelectedWork() {
 
   function handlePointerDown(event: ReactPointerEvent<HTMLUListElement>) {
     if (event.pointerType !== 'mouse' || event.button !== 0) return
+    if ((event.target as Element).closest('a, button')) return
     const track = trackRef.current
     if (!track) return
 
@@ -98,8 +99,6 @@ export function SelectedWork() {
       startX: event.clientX,
       startScrollLeft: track.scrollLeft,
     }
-    track.dataset.dragging = 'true'
-    track.setPointerCapture(event.pointerId)
   }
 
   function handlePointerMove(event: ReactPointerEvent<HTMLUListElement>) {
@@ -108,7 +107,12 @@ export function SelectedWork() {
     if (!track || !drag.active || drag.pointerId !== event.pointerId) return
 
     const delta = event.clientX - drag.startX
-    if (Math.abs(delta) > 5) drag.moved = true
+    if (Math.abs(delta) <= 5) return
+    if (!drag.moved) {
+      drag.moved = true
+      track.dataset.dragging = 'true'
+      track.setPointerCapture(event.pointerId)
+    }
     track.scrollLeft = drag.startScrollLeft - delta
   }
 
@@ -180,10 +184,6 @@ export function SelectedWork() {
                   return
                 }
                 if ((event.target as Element).closest('a')) return
-                const slide = (event.target as Element).closest<HTMLElement>('[data-slide-index]')
-                if (slide) scrollToIndex(Number(slide.dataset.slideIndex))
-              }}
-              onFocusCapture={(event) => {
                 const slide = (event.target as Element).closest<HTMLElement>('[data-slide-index]')
                 if (slide) scrollToIndex(Number(slide.dataset.slideIndex))
               }}

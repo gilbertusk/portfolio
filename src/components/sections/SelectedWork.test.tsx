@@ -1,5 +1,5 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { createEvent, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
 import { getProject } from '../../data/projects'
 import { alsoBuilt, featured } from '../../data/showcase'
 import { SelectedWork } from './SelectedWork'
@@ -40,6 +40,29 @@ describe('SelectedWork', () => {
 
     await waitFor(() => expect(previous).toBeEnabled())
     expect(next).toBeDisabled()
+  })
+
+  it('keeps project links clickable while reserving pointer capture for a real drag', () => {
+    render(<SelectedWork />)
+
+    const track = screen.getByRole('list', { name: 'Selected projects' })
+    const demo = screen.getByRole('link', { name: 'Rep Counter: Live demo (opens in a new tab)' })
+    const setPointerCapture = vi.fn()
+    Object.defineProperty(track, 'setPointerCapture', { configurable: true, value: setPointerCapture })
+
+    fireEvent.pointerDown(demo, { pointerType: 'mouse', button: 0, pointerId: 1, clientX: 100 })
+    expect(setPointerCapture).not.toHaveBeenCalled()
+
+    const click = createEvent.click(demo)
+    fireEvent(demo, click)
+    expect(click.defaultPrevented).toBe(false)
+
+    fireEvent.pointerDown(track, { pointerType: 'mouse', button: 0, pointerId: 2, clientX: 100 })
+    fireEvent.pointerMove(track, { pointerType: 'mouse', pointerId: 2, clientX: 97 })
+    expect(setPointerCapture).not.toHaveBeenCalled()
+
+    fireEvent.pointerMove(track, { pointerType: 'mouse', pointerId: 2, clientX: 80 })
+    expect(setPointerCapture).toHaveBeenCalledWith(2)
   })
 
   it('explains every project and names its tech stack', () => {
