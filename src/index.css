@@ -114,9 +114,73 @@
 
   .ticker-track:hover { animation-play-state: paused; }
 
+  .project-carousel-track {
+    --project-slide-width: min(82vw, 32rem);
+    scrollbar-width: none;
+    perspective: 1200px;
+    scroll-behavior: smooth;
+    padding-inline: max(calc((100% - var(--project-slide-width)) / 2), 0.75rem);
+    touch-action: pan-x pan-y;
+    cursor: grab;
+  }
+
+  .project-carousel-track::-webkit-scrollbar { display: none; }
+
+  .project-carousel-track[data-dragging='true'] {
+    cursor: grabbing;
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+
+  .project-carousel-track[data-dragging='true'] * { user-select: none; }
+
+  .project-carousel-slide {
+    --slide-rotate: 0deg;
+    --slide-scale: 1;
+    --slide-depth: 0px;
+    --slide-rise: 0px;
+    --slide-opacity: 1;
+    flex-basis: var(--project-slide-width);
+    width: var(--project-slide-width);
+    transform-style: preserve-3d;
+    scroll-snap-stop: always;
+    opacity: var(--slide-opacity);
+    transition: opacity 180ms ease;
+  }
+
+  .project-carousel-card {
+    transform:
+      translate3d(0, var(--slide-rise), var(--slide-depth))
+      rotateY(var(--slide-rotate))
+      scale(var(--slide-scale));
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  .project-carousel-slide[aria-current='true'] .bento-card {
+    box-shadow: 7px 7px 0 0 var(--color-ink);
+  }
+
+  @media (min-width: 40rem) {
+    .project-carousel-track { --project-slide-width: min(72vw, 32rem); }
+  }
+
+  @media (min-width: 48rem) {
+    .project-carousel-track { --project-slide-width: min(58vw, 32rem); }
+  }
+
+  @media (min-width: 64rem) {
+    .project-carousel-track { --project-slide-width: min(46vw, 32rem); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .lift, .press { transition: none; }
     .lift:hover, .lift:focus-within, .press:hover, .press:active { transform: none; }
     .motion-safe-only { animation: none !important; }
+    .project-carousel-track { scroll-behavior: auto; }
+    .project-carousel-slide { opacity: 1 !important; transition: none; }
+    .project-carousel-card { transform: none !important; transition: none; }
   }
 }

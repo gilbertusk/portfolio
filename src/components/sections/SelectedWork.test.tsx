@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { getProject } from '../../data/projects'
 import { alsoBuilt, featured } from '../../data/showcase'
@@ -14,6 +14,32 @@ describe('SelectedWork', () => {
     expect(screen.getByRole('list', { name: 'Rep Counter measured results' })).toHaveTextContent('0.822')
     expect(screen.getByRole('list', { name: 'Rep Counter measured results' })).toHaveTextContent('held-out videos')
     expect(screen.getByRole('list', { name: 'Rep Counter delivery flow' })).toHaveTextContent('MediaPipe + 1D-CNN')
+    expect(screen.getByRole('button', { name: 'Previous project' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Next project' })).toBeInTheDocument()
+    expect(within(grid).getAllByRole('listitem', { current: true })).toHaveLength(1)
+  })
+
+  it('derives arrow availability from the real scroll bounds', async () => {
+    render(<SelectedWork />)
+
+    const track = screen.getByRole('list', { name: 'Selected projects' })
+    Object.defineProperties(track, {
+      clientWidth: { configurable: true, value: 500 },
+      scrollWidth: { configurable: true, value: 1_500 },
+      scrollLeft: { configurable: true, writable: true, value: 0 },
+    })
+    fireEvent.scroll(track)
+
+    const previous = screen.getByRole('button', { name: 'Previous project' })
+    const next = screen.getByRole('button', { name: 'Next project' })
+    await waitFor(() => expect(next).toBeEnabled())
+    expect(previous).toBeDisabled()
+
+    Object.defineProperty(track, 'scrollLeft', { configurable: true, writable: true, value: 1_000 })
+    fireEvent.scroll(track)
+
+    await waitFor(() => expect(previous).toBeEnabled())
+    expect(next).toBeDisabled()
   })
 
   it('explains every project and names its tech stack', () => {
