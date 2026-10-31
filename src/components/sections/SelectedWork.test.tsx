@@ -5,13 +5,15 @@ import { alsoBuilt, featured } from '../../data/showcase'
 import { SelectedWork } from './SelectedWork'
 
 describe('SelectedWork', () => {
-  it('shows every featured project as an identical card in a symmetric grid', () => {
+  it('shows every featured project as a compact card with detailed evidence', () => {
     render(<SelectedWork />)
 
     const grid = screen.getByRole('list', { name: 'Selected projects' })
     expect(within(grid).getAllByRole('article')).toHaveLength(featured.length)
     expect(screen.getByAltText(/Rep Counter recognizing a push-up/)).toBeInTheDocument()
-    expect(screen.getByRole('list', { name: 'Rep Counter highlights' })).toHaveTextContent('0.822 macro-F1')
+    expect(screen.getByRole('list', { name: 'Rep Counter measured results' })).toHaveTextContent('0.822')
+    expect(screen.getByRole('list', { name: 'Rep Counter measured results' })).toHaveTextContent('held-out videos')
+    expect(screen.getByRole('list', { name: 'Rep Counter delivery flow' })).toHaveTextContent('MediaPipe + 1D-CNN')
   })
 
   it('explains every project and names its tech stack', () => {

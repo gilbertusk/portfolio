@@ -14,13 +14,13 @@ export function SelectedWork() {
           label="Production showcases"
           before="Selected"
           highlight="Work"
-          blurb="Models trained, evaluated, and shipped, plus the backend systems that hold them up."
+          blurb="A compact look at the interface, delivery flow, measured results, and stack behind each build."
         />
         <div className="flex flex-col gap-4">
           {/* grid-cols-1 caps the track at the viewport so a long preview address truncates instead of widening the page. */}
-          <ul aria-label="Selected projects" className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <ul aria-label="Selected projects" className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {featured.map((entry, index) => (
-              <Reveal as="li" key={entry.id} className="h-full" delay={(index % 2) * 0.08}>
+              <Reveal as="li" key={entry.id} className="h-full" delay={(index % 3) * 0.06}>
                 <ProjectCard project={getProject(entry.id)} entry={entry} />
               </Reveal>
             ))}

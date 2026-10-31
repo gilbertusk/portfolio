@@ -34,7 +34,7 @@ export const featuredProjects: Project[] = [
     },
     flow: {
       input: 'Camera',
-      model: 'Pose + CNN',
+      model: 'MediaPipe + 1D-CNN',
       output: 'Reps',
       description: 'Camera video is converted to pose landmarks, classified by a 1D-CNN, then used for rep counting and form feedback.',
     },
@@ -64,7 +64,7 @@ export const featuredProjects: Project[] = [
     },
     flow: {
       input: 'Photo',
-      model: 'CNN',
+      model: 'MobileNetV3',
       output: 'Class',
       description: 'A phone photo runs through MobileNetV3 on the device to produce a waste class.',
     },
@@ -95,7 +95,7 @@ export const featuredProjects: Project[] = [
     },
     flow: {
       input: 'Topic',
-      model: 'LLM + quote check',
+      model: 'Gemini + verifier',
       output: 'Table',
       description: 'A research topic is searched on OpenAlex, Gemini extracts each field, and code verifies every value against the abstract.',
     },
@@ -111,7 +111,7 @@ export const featuredProjects: Project[] = [
     stack: ['Tesseract.js', 'Sharp', 'Node.js', 'Prisma', 'PostgreSQL', 'Redis', 'Docker'],
     flow: {
       input: 'Label',
-      model: 'OCR',
+      model: 'Tesseract OCR',
       output: 'Match',
       description: 'A label photo is read by OCR and its fields are checked against the purchase order.',
     },
@@ -136,7 +136,7 @@ export const moreAiProjects: Project[] = [
     },
     flow: {
       input: 'X-ray',
-      model: 'TF model',
+      model: 'TensorFlow classifier',
       output: 'Result',
       description: 'An uploaded chest X-ray is classified by a TensorFlow model and the result is shown in the web interface.',
     },
@@ -183,6 +183,12 @@ export const engineeringProjects: Project[] = [
       alt: 'Jaeger trace of a travel booking request across payment, booking, and supplier services',
       width: 1400,
       height: 963,
+    },
+    flow: {
+      input: 'Search',
+      model: 'Booking saga',
+      output: 'E-voucher',
+      description: 'Supplier inventory is normalized into one search, then the booking saga coordinates the booking through to an e-voucher.',
     },
     links: [{ kind: 'source', href: 'https://github.com/gilbertusk/travelbookingengine' }],
   },

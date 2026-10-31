@@ -12,8 +12,6 @@ export interface FeaturedEntry {
   tone: Tone
   /** Text shown in the preview's address bar. */
   address: string
-  /** Headline results; left out where the tech stack already says it all. */
-  pills?: [string, string]
 }
 
 export const featured: FeaturedEntry[] = [
@@ -21,19 +19,16 @@ export const featured: FeaturedEntry[] = [
     id: 'rep-counter',
     tone: 'coral',
     address: 'gilbertusk.github.io/fitness-rep-counter',
-    pills: ['22 exercises', '0.822 macro-F1'],
   },
   {
     id: 'pilah',
     tone: 'sky',
     address: 'gilbertusk.github.io/garbage-detection',
-    pills: ['0.939 macro-F1', '4.2 MB model'],
   },
   {
     id: 'telaah',
     tone: 'coral-soft',
     address: 'telaah-fyyjxxvfoclxg9mzgdaax7.streamlit.app',
-    pills: ['98.5% grounding rate', 'MCP server'],
   },
   {
     id: 'labelguard',
