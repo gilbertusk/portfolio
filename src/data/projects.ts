@@ -53,7 +53,7 @@ export const featuredProjects: Project[] = [
     ],
     stack: ['PyTorch', 'MobileNetV3', 'ONNX', 'pytest'],
     links: [
-      { kind: 'demo', href: 'https://gilbertusk.github.io/garbage-detection/' },
+      { kind: 'demo', href: 'https://garbage-detection-olive.vercel.app/' },
       { kind: 'source', href: 'https://github.com/gilbertusk/garbage-detection' },
     ],
     image: {

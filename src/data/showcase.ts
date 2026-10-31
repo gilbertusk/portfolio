@@ -23,7 +23,7 @@ export const featured: FeaturedEntry[] = [
   {
     id: 'pilah',
     tone: 'sky',
-    address: 'gilbertusk.github.io/garbage-detection',
+    address: 'garbage-detection-olive.vercel.app',
   },
   {
     id: 'telaah',
