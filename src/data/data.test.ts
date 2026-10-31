@@ -21,6 +21,10 @@ describe('showcase data', () => {
     expect(featured.length % 2).toBe(0)
   })
 
+  it('fills whole rows of also-built tiles in both the 2- and 3-column grids', () => {
+    expect(alsoBuilt.length % 6).toBe(0)
+  })
+
   it('throws on an unknown project id', () => {
     expect(() => getProject('does-not-exist')).toThrow('Unknown project id')
   })

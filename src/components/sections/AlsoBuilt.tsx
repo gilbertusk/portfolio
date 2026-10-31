@@ -4,6 +4,7 @@ import {
   CompassIcon,
   GameControllerIcon,
   HeartbeatIcon,
+  PlugsConnectedIcon,
   ShoppingCartIcon,
   StackIcon,
   type Icon,
@@ -20,6 +21,7 @@ const ICONS: Record<AlsoBuiltIcon, Icon> = {
   game: GameControllerIcon,
   compass: CompassIcon,
   heartbeat: HeartbeatIcon,
+  plug: PlugsConnectedIcon,
 }
 
 function AlsoBuiltTile({ entry }: { entry: AlsoBuiltEntry }) {
@@ -61,7 +63,8 @@ function AlsoBuiltTile({ entry }: { entry: AlsoBuiltEntry }) {
 export function AlsoBuilt() {
   return (
     <ul aria-label="Also built" className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <li className="flex flex-col justify-between gap-6 hard bg-navy p-7 text-white">
+      {/* Spans the full row so the six tiles below fill even rows at every breakpoint. */}
+      <li className="flex flex-col justify-between gap-6 hard bg-navy p-7 text-white md:col-span-2 md:flex-row md:items-end lg:col-span-3">
         <div className="flex flex-col gap-3.5">
           <span aria-hidden className="grid h-8.5 w-14 place-items-center rounded-lg border-[1.5px] border-white/30 bg-coral">
             <StackIcon weight="bold" size={18} />
@@ -69,7 +72,7 @@ export function AlsoBuilt() {
           <p className="text-sm font-medium text-white/60">Also built</p>
           <p className="text-2xl font-semibold tracking-[-0.02em] text-balance">Smaller builds and experiments</p>
         </div>
-        <p className="text-sm text-pretty text-white/70">
+        <p className="max-w-sm text-sm text-pretty text-white/70">
           Client tools, side projects, and early ML work that shaped how I build today.
         </p>
       </li>

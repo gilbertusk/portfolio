@@ -3,6 +3,7 @@ import kpiImage from '../assets/projects/kpi-job-desk.webp'
 import pilahImage from '../assets/projects/pilah-demo.webp'
 import pneumoniaImage from '../assets/projects/pneumonia.webp'
 import repCounterImage from '../assets/projects/rep-counter.webp'
+import telaahImage from '../assets/projects/telaah.webp'
 import travelJaegerImage from '../assets/projects/travel-jaeger.webp'
 import type { Project } from './types'
 
@@ -66,6 +67,34 @@ export const featuredProjects: Project[] = [
       model: 'CNN',
       output: 'Class',
       description: 'A phone photo runs through MobileNetV3 on the device to produce a waste class.',
+    },
+  },
+  {
+    id: 'telaah',
+    title: 'Telaah',
+    year: '2026',
+    category: 'LLM automation',
+    summary:
+      'Turns a research topic into a paper-comparison table extracted from open abstracts. Gemini fills a fixed schema, and code, not the model, checks every cell against a verbatim quote from the source. Runs as a CLI, an MCP server for agents, and a Streamlit web demo.',
+    teaser: 'Quote-checked paper comparisons from a research topic.',
+    metrics: [
+      { value: '98.5%', label: 'of filled cells backed by a verified quote (16-paper sample run)' },
+      { value: '3.3x', label: 'faster with 4 parallel workers on 6 papers' },
+      { value: '40', label: 'abstracts frozen for hand-scored evaluation' },
+    ],
+    stack: ['Python', 'Gemini API', 'OpenAlex', 'MCP', 'Streamlit', 'pytest', 'GitHub Actions'],
+    links: [{ kind: 'source', href: 'https://github.com/gilbertusk/telaah' }],
+    image: {
+      src: telaahImage,
+      alt: 'Telaah sample review of leaf disease classification papers: 16 papers reviewed, 98% grounding rate, CSV and BibTeX downloads, and fields marked Verified',
+      width: 1200,
+      height: 752,
+    },
+    flow: {
+      input: 'Topic',
+      model: 'LLM + quote check',
+      output: 'Table',
+      description: 'A research topic is searched on OpenAlex, Gemini extracts each field, and code verifies every value against the abstract.',
     },
   },
   {

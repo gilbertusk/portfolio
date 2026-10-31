@@ -33,6 +33,13 @@ export const featured: FeaturedEntry[] = [
     pills: ['0.939 macro-F1', '4.2 MB model'],
   },
   {
+    id: 'telaah',
+    tone: 'coral-soft',
+    address: 'telaah · streamlit demo',
+    blurb: 'Research topic in, paper-comparison table out. Code checks every LLM-filled cell against the abstract.',
+    pills: ['98.5% grounding rate', 'MCP server'],
+  },
+  {
     id: 'labelguard',
     tone: 'navy',
     address: 'labelguard · inspection flow',
@@ -53,19 +60,12 @@ export const featured: FeaturedEntry[] = [
     blurb: 'Educational chest X-ray classifier behind a Flask API with a Next.js upload UI. Not for clinical use.',
     pills: ['TensorFlow', 'Flask API'],
   },
-  {
-    id: 'back-end-absensi',
-    tone: 'coral-soft',
-    address: 'back-end-absensi.vercel.app/api-docs',
-    blurb: 'Attendance API with JWT auth, user management, and photo uploads to Cloudinary, documented with Swagger.',
-    pills: ['JWT auth', 'Cloudinary'],
-  },
 ]
 
 /** LabelGuard has no public screenshot, so its preview shows the inspection flow instead. */
 export const labelGuardSteps = ['Label photo', 'OCR + field rules', 'Match purchase order', 'Ship or flag']
 
-export type AlsoBuiltIcon = 'clipboard' | 'cart' | 'game' | 'compass' | 'heartbeat'
+export type AlsoBuiltIcon = 'clipboard' | 'cart' | 'game' | 'compass' | 'heartbeat' | 'plug'
 
 export interface AlsoBuiltEntry {
   id: string
@@ -80,6 +80,7 @@ export const alsoBuilt: AlsoBuiltEntry[] = [
   { id: 'kancil-pintar', icon: 'game', tone: 'sky', blurb: 'Math mini-games for elementary school, on Supabase with row-level security.' },
   { id: 'career-decider', icon: 'compass', tone: 'lavender', blurb: 'Career paths and a learning roadmap from a user’s interests and skills.' },
   { id: 'healthbot', icon: 'heartbeat', tone: 'coral-soft', blurb: 'Health chatbot with workout scheduling and diet recommendations.' },
+  { id: 'back-end-absensi', icon: 'plug', tone: 'navy', blurb: 'Attendance API with JWT auth, user management, and Cloudinary photo uploads, documented with Swagger.' },
 ]
 
 /** Headline words that render as chips: "I turn [raw data] into [models] that [ship.]". */
