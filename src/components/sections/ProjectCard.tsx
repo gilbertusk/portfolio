@@ -2,6 +2,7 @@ import { ArrowUpRightIcon } from '@phosphor-icons/react'
 import type { FeaturedEntry } from '../../data/showcase'
 import type { Project } from '../../data/types'
 import { LINK_META } from '../ui/linkMeta'
+import { StackList } from '../ui/StackList'
 import { BrowserPreview } from './BrowserPreview'
 
 interface ProjectCardProps {
@@ -19,15 +20,18 @@ export function ProjectCard({ project, entry }: ProjectCardProps) {
         <div className="flex flex-col gap-2.5">
           <p className="text-[0.8rem] font-medium text-muted">{meta}</p>
           <h3 className="text-2xl font-semibold tracking-[-0.02em]">{project.title}</h3>
-          <p className="text-pretty text-muted md:line-clamp-2">{entry.blurb}</p>
-          <ul aria-label={`${project.title} highlights`} className="flex flex-wrap gap-1.5 pt-1">
-            {entry.pills.map((pill) => (
-              <li key={pill} className="rounded-md border border-blue/30 bg-blue-soft px-2 py-1 font-mono text-[0.72rem] font-semibold text-blue">
-                {pill}
-              </li>
-            ))}
-          </ul>
+          <p className="text-[0.95rem] text-pretty text-muted">{project.summary}</p>
+          {entry.pills && (
+            <ul aria-label={`${project.title} highlights`} className="flex flex-wrap gap-1.5 pt-1">
+              {entry.pills.map((pill) => (
+                <li key={pill} className="rounded-md border border-blue/30 bg-blue-soft px-2 py-1 font-mono text-[0.72rem] font-semibold text-blue">
+                  {pill}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
+        <StackList title={project.title} stack={project.stack} />
         <ul className="mt-auto flex flex-wrap gap-5 border-t border-line pt-4">
           {project.links.map(({ kind, href }) => (
             <li key={href}>

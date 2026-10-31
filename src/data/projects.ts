@@ -230,7 +230,7 @@ export const engineeringProjects: Project[] = [
     title: 'Back-End Absensi',
     year: '2026',
     category: 'REST API',
-    summary: 'Attendance API with JWT auth, user management, and photo uploads to Cloudinary.',
+    summary: 'Attendance API with JWT auth, user management, and photo uploads to Cloudinary, documented with Swagger.',
     stack: ['Node.js', 'Express', 'MongoDB', 'JWT', 'Cloudinary'],
     image: {
       src: absensiImage,

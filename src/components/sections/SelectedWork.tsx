@@ -17,7 +17,8 @@ export function SelectedWork() {
           blurb="Models trained, evaluated, and shipped, plus the backend systems that hold them up."
         />
         <div className="flex flex-col gap-4">
-          <ul aria-label="Selected projects" className="grid gap-4 md:grid-cols-2">
+          {/* grid-cols-1 caps the track at the viewport so a long preview address truncates instead of widening the page. */}
+          <ul aria-label="Selected projects" className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {featured.map((entry, index) => (
               <Reveal as="li" key={entry.id} className="h-full" delay={(index % 2) * 0.08}>
                 <ProjectCard project={getProject(entry.id)} entry={entry} />

@@ -14,6 +14,7 @@ import { alsoBuilt, type AlsoBuiltEntry, type AlsoBuiltIcon } from '../../data/s
 import { cn } from '../../lib/cn'
 import { TONE } from '../../lib/tone'
 import { LINK_META } from '../ui/linkMeta'
+import { StackList } from '../ui/StackList'
 
 const ICONS: Record<AlsoBuiltIcon, Icon> = {
   clipboard: ClipboardTextIcon,
@@ -40,7 +41,8 @@ function AlsoBuiltTile({ entry }: { entry: AlsoBuiltEntry }) {
           <span className="rounded-md border border-line bg-bg px-2 py-0.5 font-mono text-[0.7rem] font-semibold text-muted">{tag}</span>
         </div>
         <h3 className="text-lg font-semibold">{project.title}</h3>
-        <p className="text-sm text-pretty text-muted">{entry.blurb}</p>
+        <p className="text-sm text-pretty text-muted">{project.summary}</p>
+        <StackList title={project.title} stack={project.stack} className="pt-1" />
       </div>
       {primaryLink ? (
         <a

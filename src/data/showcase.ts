@@ -12,9 +12,8 @@ export interface FeaturedEntry {
   tone: Tone
   /** Text shown in the preview's address bar. */
   address: string
-  /** Short card copy; the full summary is too long for a two-line card. */
-  blurb: string
-  pills: [string, string]
+  /** Headline results; left out where the tech stack already says it all. */
+  pills?: [string, string]
 }
 
 export const featured: FeaturedEntry[] = [
@@ -22,43 +21,34 @@ export const featured: FeaturedEntry[] = [
     id: 'rep-counter',
     tone: 'coral',
     address: 'gilbertusk.github.io/fitness-rep-counter',
-    blurb: 'Recognizes the exercise, counts reps, and flags bad form from a webcam, all inside the browser.',
     pills: ['22 exercises', '0.822 macro-F1'],
   },
   {
     id: 'pilah',
     tone: 'sky',
     address: 'gilbertusk.github.io/garbage-detection',
-    blurb: 'Point a phone at trash and it tells you which bin it belongs in. MobileNetV3 runs on the device.',
     pills: ['0.939 macro-F1', '4.2 MB model'],
   },
   {
     id: 'telaah',
     tone: 'coral-soft',
     address: 'telaah-fyyjxxvfoclxg9mzgdaax7.streamlit.app',
-    blurb: 'Research topic in, paper-comparison table out. Code checks every LLM-filled cell against the abstract.',
     pills: ['98.5% grounding rate', 'MCP server'],
   },
   {
     id: 'labelguard',
     tone: 'navy',
     address: 'labelguard · inspection flow',
-    blurb: 'Quality control for PT Berlian Artha Label: each garment label is read by OCR and checked against its purchase order.',
-    pills: ['Tesseract OCR', 'PostgreSQL'],
   },
   {
     id: 'travel-booking-engine',
     tone: 'blue',
     address: 'jaeger · booking saga trace',
-    blurb: 'Merges hotel inventory from several suppliers into one search, then runs the booking saga to an e-voucher.',
-    pills: ['Kafka', 'Jaeger tracing'],
   },
   {
     id: 'pneumonia-detection',
     tone: 'lavender',
     address: 'pneumonia-detection-liard.vercel.app',
-    blurb: 'Educational chest X-ray classifier behind a Flask API with a Next.js upload UI. Not for clinical use.',
-    pills: ['TensorFlow', 'Flask API'],
   },
 ]
 
@@ -71,16 +61,15 @@ export interface AlsoBuiltEntry {
   id: string
   icon: AlsoBuiltIcon
   tone: Tone
-  blurb: string
 }
 
 export const alsoBuilt: AlsoBuiltEntry[] = [
-  { id: 'kpi-job-desk', icon: 'clipboard', tone: 'blue', blurb: 'Weighted tasks, proof of completion, and rule-based scoring for late work.' },
-  { id: 'nexacommerce', icon: 'cart', tone: 'coral', blurb: '14 microservices with SAGA checkout, Midtrans payments, and Kafka events.' },
-  { id: 'kancil-pintar', icon: 'game', tone: 'sky', blurb: 'Math mini-games for elementary school, on Supabase with row-level security.' },
-  { id: 'career-decider', icon: 'compass', tone: 'lavender', blurb: 'Career paths and a learning roadmap from a user’s interests and skills.' },
-  { id: 'healthbot', icon: 'heartbeat', tone: 'coral-soft', blurb: 'Health chatbot with workout scheduling and diet recommendations.' },
-  { id: 'back-end-absensi', icon: 'plug', tone: 'navy', blurb: 'Attendance API with JWT auth, user management, and Cloudinary photo uploads, documented with Swagger.' },
+  { id: 'kpi-job-desk', icon: 'clipboard', tone: 'blue' },
+  { id: 'nexacommerce', icon: 'cart', tone: 'coral' },
+  { id: 'kancil-pintar', icon: 'game', tone: 'sky' },
+  { id: 'career-decider', icon: 'compass', tone: 'lavender' },
+  { id: 'healthbot', icon: 'heartbeat', tone: 'coral-soft' },
+  { id: 'back-end-absensi', icon: 'plug', tone: 'navy' },
 ]
 
 /** Headline words that render as chips: "I turn [raw data] into [models] that [ship.]". */
