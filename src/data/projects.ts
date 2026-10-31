@@ -83,7 +83,10 @@ export const featuredProjects: Project[] = [
       { value: '40', label: 'abstracts frozen for hand-scored evaluation' },
     ],
     stack: ['Python', 'Gemini API', 'OpenAlex', 'MCP', 'Streamlit', 'pytest', 'GitHub Actions'],
-    links: [{ kind: 'source', href: 'https://github.com/gilbertusk/telaah' }],
+    links: [
+      { kind: 'demo', href: 'https://telaah-fyyjxxvfoclxg9mzgdaax7.streamlit.app/' },
+      { kind: 'source', href: 'https://github.com/gilbertusk/telaah' },
+    ],
     image: {
       src: telaahImage,
       alt: 'Telaah sample review of leaf disease classification papers: 16 papers reviewed, 98% grounding rate, CSV and BibTeX downloads, and fields marked Verified',

@@ -35,7 +35,7 @@ export const featured: FeaturedEntry[] = [
   {
     id: 'telaah',
     tone: 'coral-soft',
-    address: 'telaah · streamlit demo',
+    address: 'telaah-fyyjxxvfoclxg9mzgdaax7.streamlit.app',
     blurb: 'Research topic in, paper-comparison table out. Code checks every LLM-filled cell against the abstract.',
     pills: ['98.5% grounding rate', 'MCP server'],
   },
