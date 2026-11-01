@@ -1,13 +1,13 @@
 import {
   ArrowDownIcon,
   ArrowRightIcon,
-  CameraIcon,
   CaretDownIcon,
   CheckIcon,
   DownloadSimpleIcon,
   GithubLogoIcon,
-  LightningIcon,
+  HardDrivesIcon,
   LinkedinLogoIcon,
+  SparkleIcon,
   type Icon,
 } from '@phosphor-icons/react'
 import { m } from 'motion/react'
@@ -16,9 +16,9 @@ import { headline, highlightStats, pipelineSteps, terminalLines } from '../../da
 import { cn } from '../../lib/cn'
 import { EASE_OUT } from '../../lib/motion'
 
-const CHIP_ICONS: Record<'camera' | 'lightning' | 'arrow', Icon> = {
-  camera: CameraIcon,
-  lightning: LightningIcon,
+const CHIP_ICONS: Record<'server' | 'sparkle' | 'arrow', Icon> = {
+  server: HardDrivesIcon,
+  sparkle: SparkleIcon,
   arrow: ArrowDownIcon,
 }
 
@@ -92,10 +92,10 @@ function PipelineCard() {
       <div className="flex items-center justify-between gap-3">
         <h2 className="flex items-center gap-2 font-mono text-[0.75rem] font-bold tracking-[0.06em] uppercase">
           <span aria-hidden className="size-2 rounded-full bg-blue" />
-          Production AI pipeline
+          How I ship a service
         </h2>
         <span className="rounded-md border border-[#16a34a]/40 bg-[#dcfce7] px-2 py-0.5 font-mono text-[0.68rem] font-semibold text-[#15803d]">
-          Active engine
+          Backend first
         </span>
       </div>
       <ol aria-label="Pipeline steps" className="mt-4 flex flex-col gap-2.5">

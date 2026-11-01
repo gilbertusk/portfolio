@@ -76,13 +76,6 @@ describe('SelectedWork', () => {
     }
   })
 
-  it('draws the LabelGuard inspection flow because it has no screenshot', () => {
-    render(<SelectedWork />)
-
-    const flow = screen.getByRole('list', { name: 'LabelGuard inspection flow' })
-    expect(within(flow).getAllByRole('listitem')).toHaveLength(4)
-  })
-
   it('labels project links with their project and new-tab behavior', () => {
     render(<SelectedWork />)
 

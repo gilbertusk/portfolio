@@ -16,6 +16,11 @@ export interface FeaturedEntry {
 
 export const featured: FeaturedEntry[] = [
   {
+    id: 'pos-kasir',
+    tone: 'blue-soft',
+    address: 'poskasir.kesug.com',
+  },
+  {
     id: 'rep-counter',
     tone: 'coral',
     address: 'gilbertusk.github.io/fitness-rep-counter',
@@ -31,11 +36,6 @@ export const featured: FeaturedEntry[] = [
     address: 'telaah-fyyjxxvfoclxg9mzgdaax7.streamlit.app',
   },
   {
-    id: 'labelguard',
-    tone: 'navy',
-    address: 'labelguard · inspection flow',
-  },
-  {
     id: 'travel-booking-engine',
     tone: 'blue',
     address: 'jaeger · booking saga trace',
@@ -46,9 +46,6 @@ export const featured: FeaturedEntry[] = [
     address: 'pneumonia-detection-liard.vercel.app',
   },
 ]
-
-/** LabelGuard has no public screenshot, so its preview shows the inspection flow instead. */
-export const labelGuardSteps = ['Label photo', 'OCR + field rules', 'Match purchase order', 'Ship or flag']
 
 export type AlsoBuiltIcon = 'clipboard' | 'cart' | 'game' | 'compass' | 'heartbeat' | 'plug'
 
@@ -67,30 +64,30 @@ export const alsoBuilt: AlsoBuiltEntry[] = [
   { id: 'back-end-absensi', icon: 'plug', tone: 'navy' },
 ]
 
-/** Headline words that render as chips: "I turn [raw data] into [models] that [ship.]". */
+/** Headline words that render as chips: "I build [backends] that put [AI] to [work.]". */
 export const headline = {
   parts: [
-    { text: 'I turn', chip: null },
-    { text: 'raw data', chip: { icon: 'camera', tone: 'coral' } },
-    { text: 'into', chip: null },
-    { text: 'models', chip: { icon: 'lightning', tone: 'blue' } },
-    { text: 'that', chip: null },
-    { text: 'ship.', chip: { icon: 'arrow', tone: 'navy' } },
+    { text: 'I build', chip: null },
+    { text: 'backends', chip: { icon: 'server', tone: 'blue' } },
+    { text: 'that put', chip: null },
+    { text: 'AI', chip: { icon: 'sparkle', tone: 'coral' } },
+    { text: 'to', chip: null },
+    { text: 'work.', chip: { icon: 'arrow', tone: 'navy' } },
   ],
 } as const
 
 /** Every number here comes from a project's own evaluation (see projects.ts). */
 export const highlightStats = [
-  { value: '0.939', label: 'macro-F1, Pilah classifier', color: 'text-blue' },
-  { value: '22', label: 'exercises Rep Counter tracks', color: 'text-coral' },
-  { value: '4.2 MB', label: 'int8 ONNX model on device', color: 'text-[#16a34a]' },
-  { value: '0', label: 'webcam frames sent to a server', color: 'text-[#7c3aed]' },
+  { value: '14', label: 'backend services in NexaCommerce', color: 'text-blue' },
+  { value: '98.5%', label: 'Telaah LLM cells quote-checked', color: 'text-coral' },
+  { value: '0.939', label: 'macro-F1, Pilah classifier', color: 'text-[#16a34a]' },
+  { value: '22', label: 'exercises Rep Counter tracks', color: 'text-[#7c3aed]' },
 ] as const
 
 export const pipelineSteps = [
-  { title: 'Data & labeling', detail: 'Collect, clean, and label images and pose keypoints' },
-  { title: 'Model training & export', detail: 'PyTorch training, int8 quantization, ONNX export' },
-  { title: 'Workflow & serving', detail: 'ONNX Runtime Web, REST APIs, n8n automations' },
+  { title: 'API & data model', detail: 'REST endpoints, Prisma schemas, PostgreSQL' },
+  { title: 'Services & messaging', detail: 'Express services, Kafka and RabbitMQ events, Redis' },
+  { title: 'AI & automation', detail: 'ONNX and LLM features, n8n automations, Docker' },
 ] as const
 
 /** Decorative terminal; each line restates a real Rep Counter fact, no invented metrics. */
@@ -104,11 +101,16 @@ export const terminalLines = [
 
 export const specialization = {
   label: 'Specialization focus',
-  title: 'Computer Vision & Automation',
-  detail: 'MediaPipe, quantization, n8n, REST APIs & Docker',
+  title: 'Backend & Applied AI',
+  detail: 'REST APIs, Kafka, Docker, MediaPipe & n8n',
 } as const
 
 export const skillTicker = [
+  'REST APIs',
+  'Microservices',
+  'Kafka & RabbitMQ',
+  'PostgreSQL',
+  'Docker',
   'Computer vision',
   'LLM automation',
   'n8n workflows',
@@ -116,8 +118,6 @@ export const skillTicker = [
   'ONNX Runtime',
   'MediaPipe pose estimation',
   'MobileNetV3 edge classifier',
-  'OCR pipelines',
-  'REST APIs',
 ]
 
 export const aboutFacts = ['Semarang, Indonesia', 'Informatics @ UNNES', 'Bangkit Academy 2023'] as const

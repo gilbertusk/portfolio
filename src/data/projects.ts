@@ -2,6 +2,7 @@ import absensiImage from '../assets/projects/back-end-absensi.webp'
 import kpiImage from '../assets/projects/kpi-job-desk.webp'
 import pilahImage from '../assets/projects/pilah-demo.webp'
 import pneumoniaImage from '../assets/projects/pneumonia.webp'
+import posKasirImage from '../assets/projects/pos-kasir.webp'
 import repCounterImage from '../assets/projects/rep-counter.webp'
 import telaahImage from '../assets/projects/telaah.webp'
 import travelJaegerImage from '../assets/projects/travel-jaeger.webp'
@@ -100,23 +101,6 @@ export const featuredProjects: Project[] = [
       description: 'A research topic is searched on OpenAlex, Gemini extracts each field, and code verifies every value against the abstract.',
     },
   },
-  {
-    id: 'labelguard',
-    title: 'LabelGuard AI',
-    year: '2026',
-    category: 'OCR automation',
-    summary:
-      'Quality control for PT Berlian Artha Label. Operators photograph a garment label, OCR reads it, and every field is checked against the purchase order before shipment.',
-    teaser: 'OCR checks label fields against purchase orders.',
-    stack: ['Tesseract.js', 'Sharp', 'Node.js', 'Prisma', 'PostgreSQL', 'Redis', 'Docker'],
-    flow: {
-      input: 'Label',
-      model: 'Tesseract OCR',
-      output: 'Match',
-      description: 'A label photo is read by OCR and its fields are checked against the purchase order.',
-    },
-    links: [{ kind: 'source', href: 'https://github.com/GilbertusKristo/labelguard-ai' }],
-  },
 ]
 
 export const moreAiProjects: Project[] = [
@@ -169,6 +153,32 @@ export const moreAiProjects: Project[] = [
 ]
 
 export const engineeringProjects: Project[] = [
+  {
+    id: 'pos-kasir',
+    title: 'G Pos',
+    year: '2026',
+    category: 'Point of sale',
+    summary:
+      'Point of sale web app for food stalls, restaurants, and cafés. Cashiers take orders with discounts, VAT, and cash, QRIS, or debit payments, while owners track stock movements, expenses, and profit reports exported to PDF or CSV.',
+    metrics: [{ value: '22', label: 'PHPUnit test files covering checkout, stock, roles, and reports' }],
+    flow: {
+      input: 'Order',
+      model: 'Checkout rules',
+      output: 'Receipt',
+      description: 'Each order is priced with discount, VAT, and rounding rules, stock is deducted and logged, and a receipt is printed.',
+    },
+    stack: ['Laravel 12', 'PHP', 'MySQL', 'Alpine.js', 'Tailwind CSS', 'Chart.js', 'Gemini API', 'PHPUnit'],
+    links: [
+      { kind: 'demo', href: 'https://poskasir.kesug.com/' },
+      { kind: 'source', href: 'https://github.com/gilbertusk/pos-kasir' },
+    ],
+    image: {
+      src: posKasirImage,
+      alt: 'G Pos cashier screen with a grid of food and drink photos, prices, and stock counts, next to an order panel offering cash, QRIS, and debit payment',
+      width: 1200,
+      height: 574,
+    },
+  },
   {
     id: 'travel-booking-engine',
     title: 'Travel Booking Engine',

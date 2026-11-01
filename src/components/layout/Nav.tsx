@@ -36,12 +36,12 @@ export function Nav() {
               <span className="flex items-center gap-2">
                 <span className="font-display font-bold tracking-tight">{profile.name}</span>
                 <span className="hidden rounded border border-blue/30 bg-blue-soft px-1.5 py-0.5 font-mono text-[0.65rem] font-semibold text-blue sm:inline">
-                  AI / CV Eng
+                  Backend Dev
                 </span>
               </span>
               <span className="hidden items-center gap-1.5 font-mono text-[0.68rem] text-muted sm:flex">
                 <span aria-hidden className="size-1.5 rounded-full bg-[#22a55b] motion-safe:animate-blink" />
-                Available for freelance & roles
+                Available for work
               </span>
             </span>
           </a>

@@ -8,8 +8,8 @@ describe('Intro', () => {
   it('reads the chip headline as one sentence and names Gilbertus up front', () => {
     render(<Intro />)
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveAccessibleName('I turn raw data into models that ship.')
-    expect(screen.getByText(/Gilbertus Kristo \/\/ AI Engineer based in Semarang/)).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveAccessibleName('I build backends that put AI to work.')
+    expect(screen.getByText(/Gilbertus Kristo \/\/ Backend Developer & AI enthusiast/)).toBeInTheDocument()
   })
 
   it('shows only real, sourced highlight numbers', () => {

@@ -1,6 +1,6 @@
 # Gilbertus Kristo · Portfolio
 
-Personal portfolio for an AI Automation & AI Engineer. Single page with a white canvas, restrained black graphic accents, and project imagery in its original color. Built with React 19, Vite, Tailwind CSS v4, and Motion.
+Personal portfolio for a backend developer and AI enthusiast. Single page with a white canvas, restrained black graphic accents, and project imagery in its original color. Built with React 19, Vite, Tailwind CSS v4, and Motion.
 
 ## Run it
 

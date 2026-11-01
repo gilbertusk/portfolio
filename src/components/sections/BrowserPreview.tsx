@@ -1,32 +1,7 @@
-import { CameraIcon, CheckCircleIcon, FileMagnifyingGlassIcon, ScanIcon, type Icon } from '@phosphor-icons/react'
 import type { ProjectImage } from '../../data/types'
-import { labelGuardSteps, type Tone } from '../../data/showcase'
+import type { Tone } from '../../data/showcase'
 import { cn } from '../../lib/cn'
 import { TONE } from '../../lib/tone'
-
-const STEP_ICONS: Icon[] = [CameraIcon, ScanIcon, FileMagnifyingGlassIcon, CheckCircleIcon]
-
-function InspectionFlow() {
-  return (
-    <ol aria-label="LabelGuard inspection flow" className="flex flex-col px-4 pt-2 md:px-5">
-      {labelGuardSteps.map((step, index) => {
-        const StepIcon = STEP_ICONS[index]
-        const isLast = index === labelGuardSteps.length - 1
-        return (
-          <li key={step} className={cn('flex items-center gap-3 py-1', index > 0 && 'border-t border-line')}>
-            <span
-              className={cn('grid size-6 shrink-0 place-items-center rounded-md', isLast ? 'bg-blue text-white' : 'bg-bg')}
-            >
-              <StepIcon aria-hidden weight="bold" size={14} />
-            </span>
-            <span className="flex-1 text-sm font-medium">{step}</span>
-            <span className="text-xs font-medium text-muted tabular-nums">0{index + 1}</span>
-          </li>
-        )
-      })}
-    </ol>
-  )
-}
 
 interface BrowserPreviewProps {
   tone: Tone
@@ -34,7 +9,7 @@ interface BrowserPreviewProps {
   image?: ProjectImage
 }
 
-/** A browser window peeking up from a tinted stage. Images get a flow diagram fallback. */
+/** A browser window peeking up from a tinted stage, showing the project's screenshot. */
 export function BrowserPreview({ tone, address, image }: BrowserPreviewProps) {
   return (
     <div className={cn('flex h-44 items-end overflow-hidden rounded-[10px] border-[1.5px] border-ink px-4 pt-4 xl:h-40', TONE[tone].bg)}>
@@ -47,7 +22,7 @@ export function BrowserPreview({ tone, address, image }: BrowserPreviewProps) {
           </span>
           <span className="truncate rounded-md bg-white px-2 py-0.5 text-[0.7rem] font-medium text-muted">{address}</span>
         </div>
-        {image ? (
+        {image && (
           <img
             src={image.src}
             alt={image.alt}
@@ -57,8 +32,6 @@ export function BrowserPreview({ tone, address, image }: BrowserPreviewProps) {
             decoding="async"
             className="min-h-0 w-full flex-1 object-cover object-top"
           />
-        ) : (
-          <InspectionFlow />
         )}
       </div>
     </div>

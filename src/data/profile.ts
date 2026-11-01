@@ -1,10 +1,10 @@
 export const profile = {
   name: 'Gilbertus Kristo',
   initials: 'GK',
-  role: 'AI Engineer',
+  role: 'Backend Developer',
   email: 'gilbertuskristo@gmail.com',
   location: 'Semarang, Indonesia',
-  availability: 'Open to internships and freelance automation work',
+  availability: 'Available for work',
   links: {
     github: 'https://github.com/gilbertusk',
     linkedin: 'https://www.linkedin.com/in/gilbertus-kristo-anugerah-adviandito-a81809240/',
@@ -22,9 +22,9 @@ export const navItems = [
 ] as const
 
 export const intro = {
-  label: 'Gilbertus Kristo // AI Engineer based in Semarang, ID',
+  label: 'Gilbertus Kristo // Backend Developer & AI enthusiast, Semarang, ID',
   summary:
-    'AI engineer in Semarang, Indonesia. I train computer vision models, wire LLMs into business workflows, and write the APIs and automated tests that keep them running in daily use.',
+    'Backend developer in Semarang, Indonesia. I build REST APIs, microservices, and the automated tests that keep them reliable. As an AI enthusiast, I train vision models and wire LLMs into the systems I build.',
 } as const
 
 export const contactCopy = {

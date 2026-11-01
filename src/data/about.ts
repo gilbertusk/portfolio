@@ -15,7 +15,7 @@ export interface Certification {
 
 export const bio = [
   'I’m an Informatics Engineering student at Universitas Negeri Semarang. I started on the backend, building REST APIs with Laravel and Node.js, and studied cloud computing at Bangkit Academy.',
-  'Now I focus on AI automation: training and evaluating models, wiring LLMs into business workflows, and building the services and tests around them so they hold up in daily use.',
+  'Today I work as a backend developer: REST APIs, microservices, and the tests around them. AI is what I explore beyond that, from training and evaluating vision models to wiring LLMs into the services I build.',
 ]
 
 export const timeline: TimelineEntry[] = [
