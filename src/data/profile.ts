@@ -28,6 +28,6 @@ export const intro = {
 } as const
 
 export const contactCopy = {
-  heading: 'Have a workflow that should run on its own? Let’s talk.',
-  body: 'Tell me about the process, the data, and what “done” looks like. I usually reply within a day.',
+  heading: 'Need a backend built, or AI wired into one? Let’s talk.',
+  body: 'Tell me what the system has to do, the data it handles, and what “done” looks like. I usually reply within a day.',
 } as const

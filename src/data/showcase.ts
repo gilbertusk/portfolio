@@ -120,4 +120,4 @@ export const skillTicker = [
   'MobileNetV3 edge classifier',
 ]
 
-export const aboutFacts = ['Semarang, Indonesia', 'Informatics @ UNNES', 'Bangkit Academy 2023'] as const
+export const aboutFacts = ['Semarang, Indonesia', 'Informatics @ UNNES', 'Bangkit Academy 2024'] as const

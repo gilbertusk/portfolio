@@ -6,7 +6,7 @@ describe('Contact', () => {
   it('offers email, GitHub, and LinkedIn as direct contact cards', () => {
     render(<Contact />)
 
-    expect(screen.getByRole('heading', { name: /have a workflow that should run on its own/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /need a backend built, or AI wired into one/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /gilbertuskristo@gmail.com/i })).toHaveAttribute(
       'href',
       'mailto:gilbertuskristo@gmail.com',

@@ -33,13 +33,17 @@ describe('project data', () => {
     expect(new Set(ids).size).toBe(ids.length)
   })
 
-  it('only links to https URLs', () => {
+  it('only links to https URLs or files served by this site', () => {
     const hrefs = [
       ...allProjects.flatMap((project) => project.links.map((link) => link.href)),
       ...certifications.flatMap((cert) => (cert.href ? [cert.href] : [])),
     ]
 
     for (const href of hrefs) {
+      if (href.startsWith('/')) {
+        expect(href.startsWith('//')).toBe(false)
+        continue
+      }
       expect(new URL(href).protocol).toBe('https:')
     }
   })

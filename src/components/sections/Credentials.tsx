@@ -12,8 +12,16 @@ interface Credential {
   detail: string
 }
 
+/** Finds a timeline entry by organization, so reordering the timeline can't mislabel a card. */
+function timelineEntry(org: string) {
+  const entry = timeline.find((item) => item.org === org)
+  if (!entry) throw new Error(`No timeline entry for ${org}`)
+  return entry
+}
+
 function buildCredentials(): Credential[] {
-  const [university, bangkit] = timeline
+  const university = timelineEntry('Universitas Negeri Semarang')
+  const bangkit = timelineEntry('Bangkit Academy')
   return [
     {
       icon: GraduationCapIcon,

@@ -80,6 +80,7 @@ describe('SelectedWork', () => {
     render(<SelectedWork />)
 
     expect(screen.getByRole('link', { name: 'Rep Counter: Live demo (opens in a new tab)' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'G Pos: 30s walkthrough (opens in a new tab)' })).toHaveAttribute('href', '/demo/g-pos-walkthrough.mp4')
     expect(screen.getByRole('link', { name: 'Back-End Absensi: API docs (opens in a new tab)' })).toBeInTheDocument()
   })
 

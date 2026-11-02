@@ -10,24 +10,26 @@ interface GroupStyle {
   card: string
   badge: string
   chip: string
-  /** Wide groups span two of three columns on desktop. */
+  /** The wide group spans the full row on desktop. */
   isWide: boolean
+  /** Dark cards switch chip and badge text to light. */
+  isDark: boolean
 }
 
-// Wide cards alternate sides row by row, like brickwork.
+// Backend leads across the full row; the other three groups share the row below.
 const GROUP_STYLE: Record<string, GroupStyle> = {
-  ai: { icon: RobotIcon, card: 'bg-blue text-white', badge: 'bg-coral text-white', chip: 'bg-white/12', isWide: true },
-  backend: { icon: HardDrivesIcon, card: 'bg-coral-soft', badge: 'bg-coral text-white', chip: 'bg-white', isWide: false },
-  frontend: { icon: MonitorIcon, card: 'bg-lavender', badge: 'bg-blue text-white', chip: 'bg-white', isWide: false },
-  infra: { icon: DatabaseIcon, card: 'bg-sky', badge: 'bg-navy text-white', chip: 'bg-white', isWide: true },
+  backend: { icon: HardDrivesIcon, card: 'bg-blue text-white', badge: 'bg-coral text-white', chip: 'bg-white/12', isWide: true, isDark: true },
+  ai: { icon: RobotIcon, card: 'bg-coral-soft', badge: 'bg-coral text-white', chip: 'bg-white', isWide: false, isDark: false },
+  frontend: { icon: MonitorIcon, card: 'bg-lavender', badge: 'bg-blue text-white', chip: 'bg-white', isWide: false, isDark: false },
+  infra: { icon: DatabaseIcon, card: 'bg-sky', badge: 'bg-navy text-white', chip: 'bg-white', isWide: false, isDark: false },
 }
 
-const GROUP_ORDER = ['ai', 'backend', 'frontend', 'infra']
+const GROUP_ORDER = ['backend', 'ai', 'infra', 'frontend']
 
 function ToolGroupCard({ group }: { group: ToolGroup }) {
   const style = GROUP_STYLE[group.id]
   const GroupIcon = style.icon
-  const isDark = group.id === 'ai'
+  const { isDark } = style
 
   return (
     <div className={cn('hard lift flex h-full flex-col gap-5 p-6 md:p-7', style.card)}>
@@ -67,13 +69,13 @@ export default function Stack() {
   const toolCount = groups.reduce((total, group) => total + group.tools.length, 0)
 
   return (
-    <ToolkitShell blurb={`${toolCount} tools across the stack, from the model to the tests around it.`}>
+    <ToolkitShell blurb={`${toolCount} tools across the stack, from the API to the tests around it.`}>
       <div className="grid gap-4 lg:grid-cols-3">
         {groups.map((group, index) => (
           <Reveal
             key={group.id}
             delay={(index % 2) * 0.08}
-            className={GROUP_STYLE[group.id].isWide ? 'lg:col-span-2' : undefined}
+            className={GROUP_STYLE[group.id].isWide ? 'lg:col-span-3' : undefined}
           >
             <ToolGroupCard group={group} />
           </Reveal>

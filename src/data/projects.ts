@@ -159,7 +159,7 @@ export const engineeringProjects: Project[] = [
     year: '2026',
     category: 'Point of sale',
     summary:
-      'Point of sale web app for food stalls, restaurants, and cafés. Cashiers take orders with discounts, VAT, and cash, QRIS, or debit payments, while owners track stock movements, expenses, and profit reports exported to PDF or CSV.',
+      'Point of sale web app for food stalls, restaurants, and cafés. Cashiers open a shift, take orders with discounts, VAT, and cash, QRIS, or debit payments, while owners track stock movements, expenses, and profit reports exported to PDF or CSV.',
     metrics: [{ value: '22', label: 'PHPUnit test files covering checkout, stock, roles, and reports' }],
     flow: {
       input: 'Order',
@@ -170,6 +170,7 @@ export const engineeringProjects: Project[] = [
     stack: ['Laravel 12', 'PHP', 'MySQL', 'Alpine.js', 'Tailwind CSS', 'Chart.js', 'Gemini API', 'PHPUnit'],
     links: [
       { kind: 'demo', href: 'https://poskasir.kesug.com/' },
+      { kind: 'video', href: '/demo/g-pos-walkthrough.mp4' },
       { kind: 'source', href: 'https://github.com/gilbertusk/pos-kasir' },
     ],
     image: {
@@ -244,7 +245,7 @@ export const engineeringProjects: Project[] = [
   {
     id: 'back-end-absensi',
     title: 'Back-End Absensi',
-    year: '2026',
+    year: '2025',
     category: 'REST API',
     summary: 'Attendance API with JWT auth, user management, and photo uploads to Cloudinary, documented with Swagger.',
     stack: ['Node.js', 'Express', 'MongoDB', 'JWT', 'Cloudinary'],

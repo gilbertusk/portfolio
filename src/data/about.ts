@@ -14,21 +14,33 @@ export interface Certification {
 }
 
 export const bio = [
-  'I’m an Informatics Engineering student at Universitas Negeri Semarang. I started on the backend, building REST APIs with Laravel and Node.js, and studied cloud computing at Bangkit Academy.',
+  'I’m an Informatics Engineering graduate of Universitas Negeri Semarang. I started on the backend, building REST APIs with Laravel and Node.js, and studied cloud computing at Bangkit Academy.',
   'Today I work as a backend developer: REST APIs, microservices, and the tests around them. AI is what I explore beyond that, from training and evaluating vision models to wiring LLMs into the services I build.',
 ]
 
 export const timeline: TimelineEntry[] = [
   {
-    role: 'Informatics Engineering student',
+    role: 'Freelance Backend Developer',
+    org: 'PT Berlian Artha Label',
+    period: 'Aug - Nov 2026',
+    detail: 'Built internal tools for a garment label maker: a KPI job desk system, job order and kontra bon document generators, and OCR label inspection.',
+  },
+  {
+    role: 'Backend Developer Intern',
+    org: 'PT Ngupoyo Rejeki Lestari Mulya',
+    period: 'Feb - Jun 2025',
+    detail: 'Built and tested REST APIs for a face recognition attendance system: authentication, attendance records, and face image handling, with Express.js and MongoDB.',
+  },
+  {
+    role: 'Bachelor of Informatics Engineering',
     org: 'Universitas Negeri Semarang',
-    period: '2022 - present',
+    period: '2022 - 2026',
     detail: 'Software engineering, databases, cloud computing, and machine learning.',
   },
   {
     role: 'Cloud Computing cohort',
     org: 'Bangkit Academy',
-    period: 'Aug - Dec 2023',
+    period: 'Jun - Nov 2024',
     detail: 'Backend development, Google Cloud deployment, and ML fundamentals.',
   },
   {

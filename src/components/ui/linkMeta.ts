@@ -1,4 +1,4 @@
-import { ArrowUpRightIcon, BookOpenIcon, GithubLogoIcon, type Icon } from '@phosphor-icons/react'
+import { ArrowUpRightIcon, BookOpenIcon, GithubLogoIcon, PlayCircleIcon, type Icon } from '@phosphor-icons/react'
 import type { LinkKind } from '../../data/types'
 
 export const LINK_META: Record<LinkKind, { label: string; icon: Icon }> = {
@@ -6,4 +6,5 @@ export const LINK_META: Record<LinkKind, { label: string; icon: Icon }> = {
   site: { label: 'Live site', icon: ArrowUpRightIcon },
   docs: { label: 'API docs', icon: BookOpenIcon },
   source: { label: 'Source', icon: GithubLogoIcon },
+  video: { label: '30s walkthrough', icon: PlayCircleIcon },
 }

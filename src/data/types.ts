@@ -1,4 +1,4 @@
-export type LinkKind = 'demo' | 'source' | 'docs' | 'site'
+export type LinkKind = 'demo' | 'source' | 'docs' | 'site' | 'video'
 
 export interface ProjectLink {
   kind: LinkKind
